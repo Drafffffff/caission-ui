@@ -1,8 +1,8 @@
 <template>
   <v-app id="inspire">
-    <v-content class="content " max-width="400">
+    <v-content class="content" id="recommedmain" max-width="400">
       <div class="title">
-        <p>每日推荐</p>
+        <p>{{ title }}</p>
       </div>
 
       <v-card class="card" elevation="0">
@@ -30,18 +30,15 @@
                   <v-card-title class="headline"
                     >Unlimited music now</v-card-title
                   >
-
                   <v-card-subtitle
                     >Listen to your favorite artists and albums whenever and
                     wherever, online and offline.</v-card-subtitle
                   >
-
                   <v-card-actions>
                     <v-btn text>Listen Now</v-btn>
                   </v-card-actions>
                 </v-card>
               </v-col>
-
               <v-col v-for="(item, i) in items" :key="i" cols="12">
                 <v-card :color="item.color" dark>
                   <div class="d-flex flex-no-wrap justify-space-between">
@@ -50,10 +47,8 @@
                         class="headline"
                         v-text="item.title"
                       ></v-card-title>
-
                       <v-card-subtitle v-text="item.artist"></v-card-subtitle>
                     </div>
-
                     <v-avatar class="ma-3" size="125" tile>
                       <v-img :src="item.src"></v-img>
                     </v-avatar>
@@ -63,7 +58,7 @@
             </v-row>
           </v-container>
         </div>
-          <div class="end"></div>
+        <div class="end"></div>
       </div>
     </v-content>
   </v-app>
@@ -77,6 +72,8 @@ export default {
     source: String,
   },
   data: () => ({
+    menu: false,
+    title: "每日推荐",
     pullUp: false,
     items: [
       {
@@ -121,39 +118,77 @@ export default {
     toggleUp() {
       if (!this.pullUp) {
         let el = document.querySelector(".title");
-        let height = parseInt(anime.get(el, "height", "px").slice(0, -2)) - 450;
+        let el2 = document.querySelector(".pull-panel");
+        let height =
+          parseInt(anime.get(el, "top", "px").slice(0, -2)) -
+          parseInt(anime.get(el2, "top", "px").slice(0, -2)) +
+          110;
         anime({
           targets: ".pull-panel",
           translateY: height,
         });
         this.pullUp = true;
-        document.querySelector(".item-list").style.overflow="scroll";
+        document.querySelector(".item-list").style.overflow = "scroll";
+        this.title = "探索";
       }
     },
     toggleDown() {
       if (this.pullUp) {
-        let el = document.querySelector(".title");
-        let height = parseInt(anime.get(el, "height", "px").slice(0, -2)) - 450;
         console.log("d");
         anime({
           targets: ".pull-panel",
           translateY: 0,
         });
         this.pullUp = false;
-        document.querySelector(".item-list").style.overflow="hidden";
+        document.querySelector(".item-list").style.overflow = "hidden";
+        this.title = "每日推荐";
+      }
+    },
+    toggleMenu() {
+      if (!this.menu) {
+        console.log("toggle Menu");
+        anime({
+          targets: "#recommedmain",
+          translateX: -240,
+          easing: "easeInSine",
+          duration: 400,
+        });
+        this.menu = true;
+      }
+    },
+    toggleBackMenu() {
+      if (this.menu) {
+        console.log("toggle Menu back");
+        anime({
+          targets: "#recommedmain",
+          translateX: 0,
+          easing: "easeInSine",
+          duration: 400,
+        });
+        this.menu = false;
       }
     },
   },
   mounted() {
+    let bodyEl = document.querySelector(".app");
+    let hammerBody = new Hammer(bodyEl);
     let el = document.querySelector(".pull-panel");
     let hammertime = new Hammer(el);
-    hammertime.on("swipeup", ev => {
+    hammertime.on("swipeup", (ev) => {
       this.toggleUp();
-      console.log(ev);
+      // console.log(ev);
     });
-    hammertime.on("swipedown", ev => {
+    hammertime.on("swipedown", (ev) => {
       this.toggleDown();
-      console.log(ev);
+      // console.log(ev);
+    });
+    hammerBody.on("swipeleft", (ev) => {
+      this.toggleMenu();
+      // console.log(ev);
+    });
+    hammerBody.on("swiperight", (ev) => {
+      this.toggleBackMenu();
+      // console.log(ev);
     });
     hammertime.get("swipe").set({ direction: Hammer.DIRECTION_VERTICAL });
   },
@@ -205,6 +240,7 @@ export default {
     width: 100vw;
     height: 120vh;
     border-radius: 20px 20px 0 0;
+    box-shadow: 0px -5px 30px rgb(179, 179, 179);
     .patten {
       width: 80px;
       background-color: teal;
@@ -218,12 +254,11 @@ export default {
     .item-list {
       overflow: hidden;
       background-color: burlywood;
-      height: 80vh;
+      height: 76vh;
       display: flex;
     }
-    .end{
+    .end {
       height: 100px;
-  
     }
   }
 }
