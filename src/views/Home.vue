@@ -1,5 +1,5 @@
 <template>
-  <v-app id="inspire">
+  <v-app id="inspire" >
     <v-content class="content">
       <v-img class="building" src="http://placehold.it/400x400"> </v-img>
       <div class="title">

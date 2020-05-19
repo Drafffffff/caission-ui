@@ -163,7 +163,7 @@ export default {
         });
         anime({
           targets: ".menu",
-          translateX: -150,
+          translateX: 0,
           opacity: 1,
           easing: "easeInCubic",
           duration: 600,
@@ -183,7 +183,7 @@ export default {
 
         anime({
           targets: ".menu",
-          translateX: 0,
+          translateX: 150,
           opacity: 0,
           easing: "easeOutSine",
           duration: 600,
@@ -219,15 +219,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+#inspire {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  max-width: 450px;
+}
 .menu {
   position: absolute;
   top: 0;
-  right: -150px;
+  right: 0px;
   height: 100vh;
   width: 150px;
-  background-color: green;
   z-index: 0;
-  // display: none;
+
   opacity: 0;
   .menu-list {
     display: flex;
@@ -236,11 +241,11 @@ export default {
   .menu-item {
     width: 5rem;
     height: 5rem;
-    background-color: hotpink;
+    background-color: gray;
     margin: 10px auto;
     border-radius: 50%;
     &:first-child {
-      margin-top: 60px;
+      margin-top: 100px;
     }
   }
 }
