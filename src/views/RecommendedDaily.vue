@@ -61,6 +61,14 @@
         <div class="end"></div>
       </div>
     </v-content>
+    <div class="menu">
+      <div class="menu-list">
+        <div class="menu-item"></div>
+        <div class="menu-item"></div>
+        <div class="menu-item"></div>
+        <div class="menu-item"></div>
+      </div>
+    </div>
   </v-app>
 </template>
 
@@ -149,9 +157,16 @@ export default {
         console.log("toggle Menu");
         anime({
           targets: "#recommedmain",
-          translateX: -240,
-          easing: "easeInSine",
+          translateX: -150,
+          easing: "easeOutCubic",
           duration: 400,
+        });
+        anime({
+          targets: ".menu",
+          translateX: -150,
+          opacity: 1,
+          easing: "easeInCubic",
+          duration: 600,
         });
         this.menu = true;
       }
@@ -163,7 +178,15 @@ export default {
           targets: "#recommedmain",
           translateX: 0,
           easing: "easeInSine",
-          duration: 400,
+          duration: 600,
+        });
+
+        anime({
+          targets: ".menu",
+          translateX: 0,
+          opacity: 0,
+          easing: "easeOutSine",
+          duration: 600,
         });
         this.menu = false;
       }
@@ -196,6 +219,32 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.menu {
+  position: absolute;
+  top: 0;
+  right: -150px;
+  height: 100vh;
+  width: 150px;
+  background-color: green;
+  z-index: 0;
+  // display: none;
+  opacity: 0;
+  .menu-list {
+    display: flex;
+    flex-direction: column;
+  }
+  .menu-item {
+    width: 5rem;
+    height: 5rem;
+    background-color: hotpink;
+    margin: 10px auto;
+    border-radius: 50%;
+    &:first-child {
+      margin-top: 60px;
+    }
+  }
+}
+
 .content {
   overflow: hidden;
   .title {
