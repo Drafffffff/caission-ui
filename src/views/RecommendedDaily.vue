@@ -1,6 +1,6 @@
 <template>
   <v-app id="inspire">
-    <v-content class="content">
+    <v-content class="content " max-width="400">
       <div class="title">
         <p>每日推荐</p>
       </div>
@@ -62,8 +62,8 @@
               </v-col>
             </v-row>
           </v-container>
-          <div class="end"></div>
         </div>
+          <div class="end"></div>
       </div>
     </v-content>
   </v-app>
@@ -127,6 +127,7 @@ export default {
           translateY: height,
         });
         this.pullUp = true;
+        document.querySelector(".item-list").style.overflow="scroll";
       }
     },
     toggleDown() {
@@ -139,6 +140,7 @@ export default {
           translateY: 0,
         });
         this.pullUp = false;
+        document.querySelector(".item-list").style.overflow="hidden";
       }
     },
   },
@@ -218,6 +220,10 @@ export default {
       background-color: burlywood;
       height: 80vh;
       display: flex;
+    }
+    .end{
+      height: 100px;
+  
     }
   }
 }
