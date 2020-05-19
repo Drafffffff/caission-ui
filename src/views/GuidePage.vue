@@ -66,6 +66,7 @@ export default {
     position: relative;
     margin: 20px;
     top: 35vh;
+    border-radius: 20px;
     .card-img {
       width: 100%;
       #scale {
