@@ -25,20 +25,6 @@
         <div class="item-list">
           <v-container>
             <v-row dense>
-              <v-col cols="12">
-                <v-card color="#385F73" dark>
-                  <v-card-title class="headline"
-                    >Unlimited music now</v-card-title
-                  >
-                  <v-card-subtitle
-                    >Listen to your favorite artists and albums whenever and
-                    wherever, online and offline.</v-card-subtitle
-                  >
-                  <v-card-actions>
-                    <v-btn text>Listen Now</v-btn>
-                  </v-card-actions>
-                </v-card>
-              </v-col>
               <v-col v-for="(item, i) in items" :key="i" cols="12">
                 <v-card :color="item.color" dark>
                   <div class="d-flex flex-no-wrap justify-space-between">
@@ -134,6 +120,8 @@ export default {
         anime({
           targets: ".pull-panel",
           translateY: height,
+          easing: "easeOutElastic(	1, .4)",
+          duration: 600,
         });
         this.pullUp = true;
         document.querySelector(".item-list").style.overflow = "scroll";
@@ -146,6 +134,8 @@ export default {
         anime({
           targets: ".pull-panel",
           translateY: 0,
+          easing: "easeInOutQuad",
+          duration: 200,
         });
         this.pullUp = false;
         document.querySelector(".item-list").style.overflow = "hidden";
@@ -158,15 +148,16 @@ export default {
         anime({
           targets: "#recommedmain",
           translateX: -150,
-          easing: "easeOutCubic",
+          easing: "linear",
           duration: 400,
         });
         anime({
           targets: ".menu",
-          translateX: 0,
+          translateX: -150,
           opacity: 1,
-          easing: "easeInCubic",
-          duration: 600,
+          delay: 200,
+          easing: "linear",
+          duration: 400,
         });
         this.menu = true;
       }
@@ -177,15 +168,15 @@ export default {
         anime({
           targets: "#recommedmain",
           translateX: 0,
-          easing: "easeInSine",
+          easing: "easeInOutSine",
           duration: 600,
         });
 
         anime({
           targets: ".menu",
-          translateX: 150,
+          translateX: 0,
           opacity: 0,
-          easing: "easeOutSine",
+          easing: "easeInOutSine",
           duration: 600,
         });
         this.menu = false;
@@ -228,12 +219,12 @@ export default {
 .menu {
   position: absolute;
   top: 0;
-  right: 0px;
+  right: -150px;
   height: 100vh;
   width: 150px;
   z-index: 0;
 
-  opacity: 0;
+  // opacity: 0;
   .menu-list {
     display: flex;
     flex-direction: column;
