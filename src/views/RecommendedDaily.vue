@@ -5,7 +5,7 @@
         <p>{{ title }}</p>
       </div>
 
-      <v-card class="card" elevation="0">
+      <v-card class="card" elevation="0" @click="dailyClickHandle">
         <div class="white--text align-end card-img">
           <v-img
             src="http://placehold.it/400x400"
@@ -26,7 +26,7 @@
           <v-container>
             <v-row dense>
               <v-col v-for="(item, i) in items" :key="i" cols="12">
-                <v-card :color="item.color" dark>
+                <v-card :color="item.color" dark @click="cardClickHandle">
                   <div class="d-flex flex-no-wrap justify-space-between">
                     <div>
                       <v-card-title
@@ -48,12 +48,7 @@
       </div>
     </v-content>
     <div class="menu">
-      <div class="menu-list">
-        <div class="menu-item"></div>
-        <div class="menu-item"></div>
-        <div class="menu-item"></div>
-        <div class="menu-item"></div>
-      </div>
+      <mainmenu current="RecommendedDaily" />
     </div>
   </v-app>
 </template>
@@ -61,10 +56,9 @@
 <script>
 import hammer from "hammerjs";
 import anime from "animejs/lib/anime.es.js";
+import mainmenu from "../components/menu";
 export default {
-  props: {
-    source: String,
-  },
+  components: { mainmenu },
   data: () => ({
     menu: false,
     title: "每日推荐",
@@ -120,8 +114,6 @@ export default {
         anime({
           targets: ".pull-panel",
           translateY: height,
-          easing: "easeOutElastic(	1, .4)",
-          duration: 600,
         });
         this.pullUp = true;
         document.querySelector(".item-list").style.overflow = "scroll";
@@ -135,7 +127,7 @@ export default {
           targets: ".pull-panel",
           translateY: 0,
           easing: "easeInOutQuad",
-          duration: 200,
+          duration: 300,
         });
         this.pullUp = false;
         document.querySelector(".item-list").style.overflow = "hidden";
@@ -148,16 +140,16 @@ export default {
         anime({
           targets: "#recommedmain",
           translateX: -150,
-          easing: "linear",
+          // easing: "linear",
           duration: 400,
         });
         anime({
           targets: ".menu",
           translateX: -150,
           opacity: 1,
-          delay: 200,
-          easing: "linear",
           duration: 400,
+          delay: 400,
+          easing: "linear",
         });
         this.menu = true;
       }
@@ -182,29 +174,49 @@ export default {
         this.menu = false;
       }
     },
+    dailyClickHandle() {
+      this.$router.push({
+        name: "ExploreDetails",
+        params: { type: "sometitle" },
+      });
+      this.hammertime.destroy();
+      this.hammerBody.destroy();
+    },
+    cardClickHandle() {
+      this.$router.push({
+        name: "ExploreDetails",
+        params: { type: "sometitle" },
+      });
+      this.hammertime.destroy();
+      this.hammerBody.destroy();
+    },
   },
   mounted() {
     let bodyEl = document.querySelector(".app");
-    let hammerBody = new Hammer(bodyEl);
+    this.hammerBody = new Hammer(bodyEl);
     let el = document.querySelector(".pull-panel");
-    let hammertime = new Hammer(el);
-    hammertime.on("swipeup", (ev) => {
+    this.hammertime = new Hammer(el);
+    this.hammertime.on("swipeup", ev => {
       this.toggleUp();
       // console.log(ev);
     });
-    hammertime.on("swipedown", (ev) => {
+    this.hammertime.on("swipedown", ev => {
       this.toggleDown();
       // console.log(ev);
     });
-    hammerBody.on("swipeleft", (ev) => {
+    this.hammerBody.on("swipeleft", ev => {
       this.toggleMenu();
       // console.log(ev);
     });
-    hammerBody.on("swiperight", (ev) => {
+    this.hammerBody.on("swiperight", ev => {
       this.toggleBackMenu();
       // console.log(ev);
     });
-    hammertime.get("swipe").set({ direction: Hammer.DIRECTION_VERTICAL });
+    this.hammertime.get("swipe").set({ direction: Hammer.DIRECTION_VERTICAL });
+  },
+  beforeDestroy() {
+    this.hammertime.destroy();
+    this.hammerBody.destroy();
   },
 };
 </script>
