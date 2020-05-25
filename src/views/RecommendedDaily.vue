@@ -5,44 +5,48 @@
         <p>{{ title }}</p>
       </div>
 
+      <p class="date">
+        {{ date }}
+      </p>
+
       <v-card class="card" elevation="0" @click="dailyClickHandle">
         <div class="white--text align-end card-img">
           <v-img
-            src="http://placehold.it/400x400"
+            src="../assets/recommend/recomded.png"
             class="align-end card-img"
             id="scale"
           >
           </v-img>
-          <v-card-title class="card-title"
-            >Top 10 Australia n beaches</v-card-title
-          >
+          <v-card-title class="card-title">了解详情</v-card-title>
         </div>
       </v-card>
 
       <div class="pull-panel" elevation="20">
-        <div class="patten" @click="toggleUp"></div>
-
+        <div class="patten" @click="toggleUp">
+          <img src="../assets/recommend/button.png" alt="" />
+        </div>
         <div class="item-list">
-          <v-container>
-            <v-row dense>
-              <v-col v-for="(item, i) in items" :key="i" cols="12">
-                <v-card :color="item.color" dark @click="cardClickHandle">
-                  <div class="d-flex flex-no-wrap justify-space-between">
-                    <div>
-                      <v-card-title
-                        class="headline"
-                        v-text="item.title"
-                      ></v-card-title>
-                      <v-card-subtitle v-text="item.artist"></v-card-subtitle>
-                    </div>
-                    <v-avatar class="ma-3" size="125" tile>
-                      <v-img :src="item.src"></v-img>
-                    </v-avatar>
-                  </div>
-                </v-card>
-              </v-col>
-            </v-row>
-          </v-container>
+          <div class="color">
+            <div class="bg"></div>
+            <div class="text">
+              <p class="main">{{ items[0].title }}</p>
+              <p class="more">了解详情</p>
+            </div>
+          </div>
+          <div class="dynasty">
+            <div class="bg"></div>
+            <div class="text">
+              <p class="main">{{ items[1].title }}</p>
+              <p class="more">了解详情</p>
+            </div>
+          </div>
+          <div class="form">
+            <div class="bg"></div>
+            <div class="text">
+              <p class="main">{{ items[2].title }}</p>
+              <p class="more">了解详情</p>
+            </div>
+          </div>
         </div>
         <div class="end"></div>
       </div>
@@ -65,40 +69,16 @@ export default {
     pullUp: false,
     items: [
       {
-        color: "#1F7087",
-        src: "https://cdn.vuetifyjs.com/images/cards/foster.jpg",
-        title: "Supermodel",
-        artist: "Foster the People",
+        src: "../assets/recommend/1.png",
+        title: "从【颜色】开始探索聚焦藻井千年盛彩",
       },
       {
-        color: "#1F7087",
-        src: "https://cdn.vuetifyjs.com/images/cards/foster.jpg",
-        title: "Supermodel",
-        artist: "Foster the People",
+        src: "../assets/recommend/2.png",
+        title: "从【朝代】开始探索十余个朝代的藻井艺术",
       },
       {
-        color: "#1F7087",
-        src: "https://cdn.vuetifyjs.com/images/cards/foster.jpg",
-        title: "Supermodel",
-        artist: "Foster the People",
-      },
-      {
-        color: "#952175",
-        src: "https://cdn.vuetifyjs.com/images/cards/halcyon.png",
-        title: "Halcyon Days",
-        artist: "Ellie Goulding",
-      },
-      {
-        color: "#952175",
-        src: "https://cdn.vuetifyjs.com/images/cards/halcyon.png",
-        title: "Halcyon Days",
-        artist: "Ellie Goulding",
-      },
-      {
-        color: "#952175",
-        src: "https://cdn.vuetifyjs.com/images/cards/halcyon.png",
-        title: "Halcyon Days",
-        artist: "Ellie Goulding",
+        src: "../assets/recommend/3.png",
+        title: "从【形式】开始探索走进藻井结构演变过程",
       },
     ],
   }),
@@ -116,6 +96,8 @@ export default {
           translateY: height,
         });
         this.pullUp = true;
+        document.querySelector(".color").style.marginTop = "3rem";
+
         document.querySelector(".item-list").style.overflow = "scroll";
         this.title = "探索";
       }
@@ -130,6 +112,7 @@ export default {
           duration: 300,
         });
         this.pullUp = false;
+        document.querySelector(".color").style.marginTop = "1rem";
         document.querySelector(".item-list").style.overflow = "hidden";
         this.title = "每日推荐";
       }
@@ -140,15 +123,15 @@ export default {
         anime({
           targets: "#recommedmain",
           translateX: -150,
-          // easing: "linear",
-          duration: 400,
+          easing: "linear",
+          duration: 200,
         });
         anime({
           targets: ".menu",
           translateX: -150,
           opacity: 1,
+          // delay: 200,
           duration: 400,
-          delay: 400,
           easing: "linear",
         });
         this.menu = true;
@@ -160,16 +143,16 @@ export default {
         anime({
           targets: "#recommedmain",
           translateX: 0,
-          easing: "easeInOutSine",
-          duration: 600,
+          easing: "linear",
+          duration: 400,
         });
 
         anime({
           targets: ".menu",
           translateX: 0,
           opacity: 0,
-          easing: "easeInOutSine",
-          duration: 600,
+          easing: "linear",
+          duration: 400,
         });
         this.menu = false;
       }
@@ -191,24 +174,30 @@ export default {
       this.hammerBody.destroy();
     },
   },
+  created() {
+    let d = new Date();
+    let month = d.getMonth();
+    let day = d.getDate();
+    this.date = ` ${month + 1}月${day}日`;
+  },
   mounted() {
     let bodyEl = document.querySelector(".app");
     this.hammerBody = new Hammer(bodyEl);
     let el = document.querySelector(".pull-panel");
     this.hammertime = new Hammer(el);
-    this.hammertime.on("swipeup", ev => {
+    this.hammertime.on("swipeup", (ev) => {
       this.toggleUp();
       // console.log(ev);
     });
-    this.hammertime.on("swipedown", ev => {
+    this.hammertime.on("swipedown", (ev) => {
       this.toggleDown();
       // console.log(ev);
     });
-    this.hammerBody.on("swipeleft", ev => {
+    this.hammerBody.on("swipeleft", (ev) => {
       this.toggleMenu();
       // console.log(ev);
     });
-    this.hammerBody.on("swiperight", ev => {
+    this.hammerBody.on("swiperight", (ev) => {
       this.toggleBackMenu();
       // console.log(ev);
     });
@@ -222,11 +211,29 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.date {
+  position: absolute;
+  top: 10vh;
+  text-align: center;
+  z-index: 10;
+  width: 100%;
+  color: white;
+  font-size: 1.4rem;
+  margin: auto;
+  letter-spacing: 0.4rem;
+  text-shadow: 3px 3px 5px gray;
+  animation: fontScale 8s;
+  animation-direction: alternate;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+}
 #inspire {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
   max-width: 450px;
+  background-color: #f4f3f0;
 }
 .menu {
   position: absolute;
@@ -287,20 +294,35 @@ export default {
     .card-title {
       position: absolute;
       bottom: 0px;
+      text-shadow: 3px 3px 5px gray;
     }
   }
+  .card-container {
+    z-index: 20;
+    width: 100%;
+    background-color: #fff;
+    .showcard {
+      width: 100%;
+      height: 100px;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
   .pull-panel {
     position: absolute;
     top: 60vh;
     z-index: 10;
-    background-color: brown;
+    background-color: rgb(221, 205, 169);
     width: 100vw;
     height: 120vh;
     border-radius: 20px 20px 0 0;
     box-shadow: 0px -5px 30px rgb(179, 179, 179);
     .patten {
       width: 80px;
-      background-color: teal;
+      // background-color: rgb(221, 205, 169);
       height: 80px;
       position: relative;
       margin: auto;
@@ -309,10 +331,68 @@ export default {
       transform: rotate(45deg);
     }
     .item-list {
-      overflow: hidden;
-      background-color: burlywood;
+      // overflow: hidden;
+      // background-color: rgb(221, 205, 169);
+
       height: 76vh;
       display: flex;
+      flex-direction: column;
+      & > div {
+        .bg {
+          height: 150px;
+          background-position: center center;
+          transition: all 0.3s ease-in-out;
+          filter: brightness(70%);
+          border-radius: 15px;
+          box-shadow: 0 5px 20px rgba(117, 91, 62, 0.295);
+          background-size: cover;
+          &:hover {
+            box-shadow: 0 5px 20px rgba(117, 91, 62, 0.432);
+          }
+        }
+        .text {
+          position: fixed;
+          transform: translateY(-150px);
+          // float: left;
+          p{
+            display: block;
+          }
+          p.main{
+            color: rgb(236, 236, 236);
+            margin: 1rem 0.5rem;
+            font-size: 1.4rem;
+            // display: block;
+          }
+          p.more{
+            color: rgba(255, 255, 255, 0.651);
+            margin: 1rem 0.6rem;
+            font-size: 1rem;
+          }
+        }
+      }
+
+      .color {
+        margin: 1rem 1.5rem;
+        .bg {
+          // flex: 1;
+          background-image: url("../assets/recommend/1.png");
+        }
+      }
+
+      .dynasty {
+        margin: 1rem 1.5rem;
+        .bg {
+          // flex: 1;
+          background-image: url("../assets/recommend/2.png");
+        }
+      }
+      .form {
+        margin: 1rem 1.5rem;
+        .bg {
+          // flex: 1;
+          background-image: url("../assets/recommend/3.png");
+        }
+      }
     }
     .end {
       height: 100px;
@@ -325,6 +405,18 @@ export default {
   }
   to {
     transform: scale(1.25);
+  }
+}
+@keyframes fontScale {
+  from {
+    font-size: 1.2rem;
+    // letter-spacing: 0.2rem;
+    text-shadow: 3px 3px 1px gray;
+  }
+  to {
+    font-size: 1.4rem;
+    letter-spacing: 0.4rem;
+    text-shadow: 3px 3px 5px gray;
   }
 }
 </style>

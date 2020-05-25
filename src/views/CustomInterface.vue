@@ -47,15 +47,15 @@ export default {
         anime({
           targets: "#recommedmain",
           translateX: -150,
-          // easing: "linear",
-          duration: 400,
+          easing: "linear",
+          duration: 200,
         });
         anime({
           targets: ".menu",
           translateX: -150,
           opacity: 1,
+          // delay: 200,
           duration: 400,
-          delay: 400,
           easing: "linear",
         });
         this.menu = true;
@@ -67,16 +67,16 @@ export default {
         anime({
           targets: "#recommedmain",
           translateX: 0,
-          easing: "easeInOutSine",
-          duration: 600,
+          easing: "linear",
+          duration: 400,
         });
 
         anime({
           targets: ".menu",
           translateX: 0,
           opacity: 0,
-          easing: "easeInOutSine",
-          duration: 600,
+          easing: "linear",
+          duration: 400,
         });
         this.menu = false;
       }
