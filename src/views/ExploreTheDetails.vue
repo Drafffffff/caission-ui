@@ -2,10 +2,15 @@
   <v-app id="inspire">
     <v-content class="content" id="recommedmain" max-width="400">
       <div class="title my-4">
-        <v-btn class="mx-5 my-2 back" fab  color="gray" @click="$router.push('/recommendeddaily')">
-          <v-icon >mdi-arrow-left </v-icon>
+        <v-btn
+          class="mx-5 my-2 back"
+          fab
+          color="gray"
+          @click="$router.push('/recommendeddaily')"
+        >
+          <v-icon>mdi-arrow-left </v-icon>
         </v-btn>
-        <p>{{ title }}</p>
+        <p class="maintitle">{{ title }}</p>
       </div>
       <vue-card-stack
         :cards="cards"
@@ -13,6 +18,7 @@
         :card-width="stackWidth - 55"
         :cardHeight="stackHeight * 0.8"
         class="cards my-7"
+        v-if="params == 'daily'"
       >
         <template v-slot:card="{ card }">
           <div
@@ -33,7 +39,7 @@ export default {
   components: { VueCardStack },
   data: () => ({
     menu: false,
-    title: "",
+    params: "",
     pullUp: false,
     cards: [
       { background: "#00659d" },
@@ -42,10 +48,19 @@ export default {
       { background: "#fc8890" },
       { background: "#b35d7f" },
     ],
+    dailys:[
+      {}
+    ]
   }),
   methods: {},
   beforeMount() {
-    this.title = this.$route.params.type;
+    this.params = this.$route.params.type;
+    if (this.params == "daily") {
+      let d = new Date();
+      let month = d.getMonth();
+      let day = d.getDate();
+      this.title = ` ${month + 1}月${day}日`;
+    }
     this.stackWidth = window.innerWidth;
     this.stackHeight = window.innerHeight;
   },
@@ -73,14 +88,14 @@ export default {
       padding: 1rem 0;
       font-size: 1.25rem;
       font-weight: 500;
-      letter-spacing: 0.0125em;
+      letter-spacing: 0.25rem;
       line-height: 2rem;
     }
   }
   .cards {
     position: relative;
     // top: 20vh;
-
+    top: -20px;
     margin: auto;
   }
 }

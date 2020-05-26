@@ -25,7 +25,7 @@
         <div class="patten" @click="toggleUp">
           <img src="../assets/recommend/button.png" alt="" />
         </div>
-        <div class="item-list">
+        <div class="item-list" @click="cardClickHandle('color')">
           <div class="color">
             <div class="bg"></div>
             <div class="text">
@@ -33,20 +33,21 @@
               <p class="more">了解详情</p>
             </div>
           </div>
-          <div class="dynasty">
+          <div class="dynasty" @click="cardClickHandle('dynasty')">
             <div class="bg"></div>
             <div class="text">
               <p class="main">{{ items[1].title }}</p>
               <p class="more">了解详情</p>
             </div>
           </div>
-          <div class="form">
+          <div class="form" @click="cardClickHandle('form')">
             <div class="bg"></div>
             <div class="text">
               <p class="main">{{ items[2].title }}</p>
               <p class="more">了解详情</p>
             </div>
           </div>
+          <p class="endline">更多精彩敬请期待</p>
         </div>
         <div class="end"></div>
       </div>
@@ -160,15 +161,15 @@ export default {
     dailyClickHandle() {
       this.$router.push({
         name: "ExploreDetails",
-        params: { type: "sometitle" },
+        params: { type: "daily" },
       });
       this.hammertime.destroy();
       this.hammerBody.destroy();
     },
-    cardClickHandle() {
+    cardClickHandle(title) {
       this.$router.push({
         name: "ExploreDetails",
-        params: { type: "sometitle" },
+        params: { type: title },
       });
       this.hammertime.destroy();
       this.hammerBody.destroy();
@@ -185,19 +186,19 @@ export default {
     this.hammerBody = new Hammer(bodyEl);
     let el = document.querySelector(".pull-panel");
     this.hammertime = new Hammer(el);
-    this.hammertime.on("swipeup", (ev) => {
+    this.hammertime.on("swipeup", ev => {
       this.toggleUp();
       // console.log(ev);
     });
-    this.hammertime.on("swipedown", (ev) => {
+    this.hammertime.on("swipedown", ev => {
       this.toggleDown();
       // console.log(ev);
     });
-    this.hammerBody.on("swipeleft", (ev) => {
+    this.hammerBody.on("swipeleft", ev => {
       this.toggleMenu();
       // console.log(ev);
     });
-    this.hammerBody.on("swiperight", (ev) => {
+    this.hammerBody.on("swiperight", ev => {
       this.toggleBackMenu();
       // console.log(ev);
     });
@@ -310,6 +311,13 @@ export default {
       }
     }
   }
+  .endline {
+    width: 100%;
+    text-align: center;
+    margin-top: 4px;
+    font-size: 0.9rem;
+    color: #ac845d;
+  }
 
   .pull-panel {
     position: absolute;
@@ -354,16 +362,16 @@ export default {
           position: fixed;
           transform: translateY(-150px);
           // float: left;
-          p{
+          p {
             display: block;
           }
-          p.main{
+          p.main {
             color: rgb(236, 236, 236);
             margin: 1rem 0.5rem;
             font-size: 1.4rem;
             // display: block;
           }
-          p.more{
+          p.more {
             color: rgba(255, 255, 255, 0.651);
             margin: 1rem 0.6rem;
             font-size: 1rem;
