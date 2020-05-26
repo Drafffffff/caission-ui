@@ -17,6 +17,7 @@
         :stack-width="stackWidth"
         :card-width="stackWidth - 55"
         :cardHeight="stackHeight * 0.8"
+        :maxVisibleCards="5"
         class="cards my-7"
         v-if="params == 'daily'"
       >
@@ -25,6 +26,53 @@
             style="width: 100%; height: 100%; border-radius :20px"
             :style="{ background: card.background }"
           ></div>
+        </template>
+      </vue-card-stack>
+      <vue-card-stack
+        :cards="colors"
+        :stack-width="stackWidth"
+        :card-width="stackWidth - 55"
+        :cardHeight="stackHeight * 0.8"
+        :maxVisibleCards="5"
+        class="cards my-7"
+        v-if="params == 'color'"
+      >
+        <template v-slot:card="{ card }">
+          <div style="width: 100%; height: 100%; border-radius :20px">
+            <img :src="card.img" class="cardImg" />
+          </div>
+        </template>
+      </vue-card-stack>
+
+      <vue-card-stack
+        :cards="dynastys"
+        :stack-width="stackWidth"
+        :card-width="stackWidth - 55"
+        :cardHeight="stackHeight * 0.8"
+        :maxVisibleCards="5"
+        class="cards my-7"
+        v-if="params == 'dynasty'"
+      >
+        <template v-slot:card="{ card }">
+          <div style="width: 100%; height: 100%; border-radius :20px">
+            <img :src="card.img" class="cardImg" />
+          </div>
+        </template>
+      </vue-card-stack>
+
+      <vue-card-stack
+        :cards="forms"
+        :stack-width="stackWidth"
+        :card-width="stackWidth - 55"
+        :cardHeight="stackHeight * 0.8"
+        :maxVisibleCards="5"
+        class="cards my-7"
+        v-if="params == 'form'"
+      >
+        <template v-slot:card="{ card }">
+          <div style="width: 100%; height: 100%; border-radius :20px">
+            <img :src="card.img" class="cardImg" />
+          </div>
         </template>
       </vue-card-stack>
     </v-content>
@@ -40,17 +88,44 @@ export default {
   data: () => ({
     menu: false,
     params: "",
-    pullUp: false,
-    cards: [
-      { background: "#00659d" },
-      { background: "#00abbc" },
-      { background: "#e2c58a" },
-      { background: "#fc8890" },
-      { background: "#b35d7f" },
+    cards:[],
+    colors: [
+      { img: require("../assets/recommend/card/color1.jpg") },
+      { img: require("../assets/recommend/card/color2.jpg") },
+      { img: require("../assets/recommend/card/color3.jpg") },
+      { img: require("../assets/recommend/card/color4.jpg") },
+      { img: require("../assets/recommend/card/color5.jpg") },
+      { img: require("../assets/recommend/card/color6.jpg") },
     ],
-    dailys:[
-      {}
-    ]
+    dynastys: [
+      { img: require("../assets/recommend/card/dynasty1.jpg") },
+      { img: require("../assets/recommend/card/dynasty2.jpg") },
+      { img: require("../assets/recommend/card/dynasty3.jpg") },
+      { img: require("../assets/recommend/card/dynasty4.jpg") },
+      { img: require("../assets/recommend/card/dynasty5.jpg") },
+      { img: require("../assets/recommend/card/dynasty6.jpg") },
+      { img: require("../assets/recommend/card/dynasty7.jpg") },
+      { img: require("../assets/recommend/card/dynasty8.jpg") },
+      { img: require("../assets/recommend/card/dynasty9.jpg") },
+      { img: require("../assets/recommend/card/dynasty10.jpg") },
+      { img: require("../assets/recommend/card/dynasty11.jpg") },
+      { img: require("../assets/recommend/card/dynasty12.jpg") },
+    ],
+    forms: [
+      { img: require("../assets/recommend/card/form1.jpg") },
+      { img: require("../assets/recommend/card/form2.jpg") },
+      { img: require("../assets/recommend/card/form3.jpg") },
+      { img: require("../assets/recommend/card/form4.jpg") },
+      { img: require("../assets/recommend/card/form5.jpg") },
+      { img: require("../assets/recommend/card/form6.jpg") },
+      { img: require("../assets/recommend/card/form7.jpg") },
+      { img: require("../assets/recommend/card/form8.jpg") },
+      { img: require("../assets/recommend/card/form9.jpg") },
+      { img: require("../assets/recommend/card/form10.jpg") },
+
+    ],
+
+    dailys: [{}],
   }),
   methods: {},
   beforeMount() {
@@ -60,6 +135,12 @@ export default {
       let month = d.getMonth();
       let day = d.getDate();
       this.title = ` ${month + 1}月${day}日`;
+    } else if (this.params == "color") {
+      this.title = ` 颜色`;
+    } else if (this.params == "dynasty") {
+      this.title = ` 朝代`;
+    } else if (this.params == "form") {
+      this.title = ` 形式`;
     }
     this.stackWidth = window.innerWidth;
     this.stackHeight = window.innerHeight;
@@ -73,6 +154,9 @@ export default {
   height: 100vh;
   overflow: hidden;
   max-width: 450px;
+}
+.cardImg {
+  width: 100%;
 }
 
 .content {

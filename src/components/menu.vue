@@ -2,53 +2,21 @@
   <div>
     <div class="menu">
       <div class="menu-list">
-        <div class="menu-item RecommendedDaily">
-          <v-btn
-            class="mx-5 my-2 back"
-            fab
-            
-            large
-            color="gray"
-            @click="push1"
-          >
-            <v-icon dark>mdi-arrow-left </v-icon>
-          </v-btn>
+        <div class="menu-item RecommendedDaily" @click="push1">
+          <img src="../assets/menu/homepage.png" alt="" />
+          <p>首页</p>
         </div>
-        <div class="menu-item CustomInterface">
-          <v-btn
-            class="mx-5 my-2 back"
-            fab
-            
-            large
-            color="gray"
-            @click="push2"
-          >
-            <v-icon dark>mdi-arrow-left </v-icon>
-          </v-btn>
+        <div class="menu-item CustomInterface" @click="push2">
+          <img src="../assets/menu/make.png" alt="" />
+          <p>定制</p>
         </div>
-        <div class="menu-item Store">
-          <v-btn
-            class="mx-5 my-2 back"
-            fab
-            
-            large
-            color="gray"
-            @click="push3"
-          >
-            <v-icon dark>mdi-arrow-left </v-icon>
-          </v-btn>
+        <div class="menu-item Store" @click="push3">
+          <img src="../assets/menu/shop.png" alt="" />
+          <p>商店</p>
         </div>
-        <div class="menu-item AboutMe">
-          <v-btn
-            class="mx-5 my-2 back"
-            fab
-            
-            large
-            color="gray"
-            @click="push4"
-          >
-            <v-icon dark>mdi-arrow-left </v-icon>
-          </v-btn>
+        <div class="menu-item AboutMe" @click="push4">
+          <img src="../assets/menu/me.png" alt="" />
+          <p>我的</p>
         </div>
       </div>
     </div>
@@ -103,10 +71,16 @@ export default {
     width: 5rem;
     height: 5rem;
     // background-color: gray;
-    margin: 10px auto;
+    margin: 1.3rem auto;
     border-radius: 50%;
     &:first-child {
       margin-top: 100px;
+    }
+    img {
+      width: 100%;
+    }
+    p{
+      text-align: center;
     }
   }
 }
