@@ -174,31 +174,67 @@ export default {
       this.hammertime.destroy();
       this.hammerBody.destroy();
     },
+    SectionToChinese(section) {
+      var chnNumChar = [
+        "零",
+        "一",
+        "二",
+        "三",
+        "四",
+        "五",
+        "六",
+        "七",
+        "八",
+        "九",
+      ];
+      var chnUnitChar = ["", "十", "百", "千", "万", "亿", "万亿", "亿亿"];
+      var strIns = "",
+        chnStr = "";
+      var unitPos = 0;
+      var zero = true;
+      while (section > 0) {
+        var v = section % 10;
+        if (v === 0) {
+          if (!zero) {
+            zero = true;
+            chnStr = chnNumChar[v] + chnStr;
+          }
+        } else {
+          zero = false;
+          strIns = chnNumChar[v];
+          strIns += chnUnitChar[unitPos];
+          chnStr = strIns + chnStr;
+        }
+        unitPos++;
+        section = Math.floor(section / 10);
+      }
+      return chnStr;
+    },
   },
   created() {
     let d = new Date();
     let month = d.getMonth();
     let day = d.getDate();
-    this.date = ` ${month + 1}月${day}日`;
+    this.date = ` ${this.SectionToChinese(month + 1)}月${this.SectionToChinese(day)}日`;
   },
   mounted() {
     let bodyEl = document.querySelector(".app");
     this.hammerBody = new Hammer(bodyEl);
     let el = document.querySelector(".pull-panel");
     this.hammertime = new Hammer(el);
-    this.hammertime.on("swipeup", ev => {
+    this.hammertime.on("swipeup", (ev) => {
       this.toggleUp();
       // console.log(ev);
     });
-    this.hammertime.on("swipedown", ev => {
+    this.hammertime.on("swipedown", (ev) => {
       this.toggleDown();
       // console.log(ev);
     });
-    this.hammerBody.on("swipeleft", ev => {
+    this.hammerBody.on("swipeleft", (ev) => {
       this.toggleMenu();
       // console.log(ev);
     });
-    this.hammerBody.on("swiperight", ev => {
+    this.hammerBody.on("swiperight", (ev) => {
       this.toggleBackMenu();
       // console.log(ev);
     });
@@ -219,7 +255,7 @@ export default {
   z-index: 10;
   width: 100%;
   color: white;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   margin: auto;
   letter-spacing: 0.4rem;
   text-shadow: 3px 3px 5px gray;
@@ -359,8 +395,9 @@ export default {
           }
         }
         .text {
-          position: fixed;
+          position: absolute;
           transform: translateY(-150px);
+          width: 90%;
           // float: left;
           p {
             display: block;
@@ -369,6 +406,7 @@ export default {
             color: rgb(236, 236, 236);
             margin: 1rem 0.5rem;
             font-size: 1.4rem;
+
             // display: block;
           }
           p.more {
@@ -422,7 +460,7 @@ export default {
     text-shadow: 3px 3px 1px gray;
   }
   to {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     letter-spacing: 0.4rem;
     text-shadow: 3px 3px 5px gray;
   }

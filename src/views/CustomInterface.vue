@@ -1,25 +1,35 @@
 <template>
   <v-app id="inspire">
     <v-content class="content" id="recommedmain" max-width="400">
-      <div class="title white--text">
+      <div class="title ">
         <p>{{ title }}</p>
       </div>
 
-      <v-card class="card" elevation="0">
-        <div class="card-img"></div>
+      <v-card class="card">
+        <div class="card-img">
+          <swiper />
+        </div>
       </v-card>
 
       <div class="pull-panel" elevation="20">
-        <div class="patten"></div>
+        <div class="patten" @click="toggleUp">
+          <img src="../assets/recommend/button.png" alt="" />
+        </div>
       </div>
 
       <div class="button-card">
-        <div class="write-button" elevation="1" @click="writeClickHandle"></div>
-        <div
-          class="doodle-button"
-          elevation="1"
-          @click="doodleClickHandle"
-        ></div>
+        <div class="write-button" elevation="1" @click="writeClickHandle">
+          <div icon>
+            <img class="icon" src="../assets/custom/dingzhi.png" alt="" />
+          </div>
+          <div class="text">开始定制</div>
+        </div>
+        <div class="doodle-button" elevation="1" @click="doodleClickHandle">
+          <div icon>
+            <img class="icon" src="../assets/custom/tuya.png" alt="" />
+          </div>
+          <div class="text">开始涂鸦</div>
+        </div>
       </div>
     </v-content>
     <div class="menu">
@@ -32,9 +42,11 @@
 import hammer from "hammerjs";
 import anime from "animejs/lib/anime.es.js";
 import mainmenu from "../components/menu";
+import swiper from "../components/swiper";
 export default {
   components: {
     mainmenu,
+    swiper,
   },
   data: () => ({
     menu: false,
@@ -93,11 +105,11 @@ export default {
   mounted() {
     let bodyEl = document.querySelector(".app");
     this.hammerBody = new Hammer(bodyEl);
-    this.hammerBody.on("swipeleft", ev => {
+    this.hammerBody.on("swipeleft", (ev) => {
       this.toggleMenu();
       // console.log(ev);
     });
-    this.hammerBody.on("swiperight", ev => {
+    this.hammerBody.on("swiperight", (ev) => {
       this.toggleBackMenu();
       // console.log(ev);
     });
@@ -163,7 +175,7 @@ export default {
     top: 6vh;
     border-radius: 20px;
     .card-img {
-      width: 80vmin;
+      width: 100%;
       height: 90vmin;
       overflow: hidden;
     }
@@ -176,10 +188,10 @@ export default {
     position: absolute;
     top: 0;
     z-index: 10;
-    background-color: gray;
     width: 100vw;
     height: 70vh;
     border-radius: 0 0 20px 20px;
+    background-color: #f4f3f0;
     box-shadow: 0px 5px 30px rgb(179, 179, 179);
     .patten {
       width: 80px;
@@ -197,20 +209,51 @@ export default {
     bottom: 0;
     width: 100%;
     height: 25vh;
-    background-color: tomato;
     display: flex;
     & > div {
       flex: 1;
-      background-color: orange;
       margin: 40px 0;
       border-radius: 20px;
+      background-color: #f4f3f0;
     }
     & > div:first-child {
       margin-left: 20px;
       margin-right: 15px;
+      display: flex;
+
+      div {
+        flex: 1;
+        padding: 2.5rem 1.2rem;
+        img {
+          width: 100%;
+          margin: auto;
+        }
+      }
+      .icon {
+        padding-right: 0.5rem;
+      }
+      .text {
+        padding-left: 0.5rem;
+      }
     }
     & > div:last-child {
       margin-right: 20px;
+      display: flex;
+
+      div {
+        flex: 1;
+        padding: 2.5rem 1.2rem;
+        img {
+          width: 100%;
+          margin: auto;
+        }
+      }
+      .icon {
+        padding-right: 0.5rem;
+      }
+      .text {
+        padding-left: 0.5rem;
+      }
     }
   }
 }

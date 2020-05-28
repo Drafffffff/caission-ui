@@ -13,32 +13,36 @@
         <p class="maintitle">{{ title }}</p>
       </div>
       <vue-card-stack
-        :cards="cards"
+        :cards="dailys"
         :stack-width="stackWidth"
         :card-width="stackWidth - 55"
-        :cardHeight="stackHeight * 0.8"
+        :cardHeight="610"
         :maxVisibleCards="5"
         class="cards my-7"
         v-if="params == 'daily'"
       >
         <template v-slot:card="{ card }">
           <div
-            style="width: 100%; height: 100%; border-radius :20px"
-            :style="{ background: card.background }"
-          ></div>
+            style="width: 100%; height: 100%; border-radius :20px;overflow:scroll;"
+          >
+            <img :src="card.img" class="cardImg" style="padding:10px 0;"/>
+          </div>
         </template>
       </vue-card-stack>
+
       <vue-card-stack
         :cards="colors"
         :stack-width="stackWidth"
         :card-width="stackWidth - 55"
-        :cardHeight="stackHeight * 0.8"
+        :cardHeight="610"
         :maxVisibleCards="5"
         class="cards my-7"
         v-if="params == 'color'"
       >
         <template v-slot:card="{ card }">
-          <div style="width: 100%; height: 100%; border-radius :20px">
+          <div
+            style="width: 100%; height: 100%; border-radius :20px;overflow:hidden;"
+          >
             <img :src="card.img" class="cardImg" />
           </div>
         </template>
@@ -48,13 +52,15 @@
         :cards="dynastys"
         :stack-width="stackWidth"
         :card-width="stackWidth - 55"
-        :cardHeight="stackHeight * 0.8"
+        :cardHeight="610"
         :maxVisibleCards="5"
         class="cards my-7"
         v-if="params == 'dynasty'"
       >
         <template v-slot:card="{ card }">
-          <div style="width: 100%; height: 100%; border-radius :20px">
+          <div
+            style="width: 100%; height: 100%; border-radius :20px;overflow:hidden;"
+          >
             <img :src="card.img" class="cardImg" />
           </div>
         </template>
@@ -64,13 +70,15 @@
         :cards="forms"
         :stack-width="stackWidth"
         :card-width="stackWidth - 55"
-        :cardHeight="stackHeight * 0.8"
+        :cardHeight="610"
         :maxVisibleCards="5"
         class="cards my-7"
         v-if="params == 'form'"
       >
         <template v-slot:card="{ card }">
-          <div style="width: 100%; height: 100%; border-radius :20px">
+          <div
+            style="width: 100%; height: 100%; border-radius :20px;overflow:hidden;"
+          >
             <img :src="card.img" class="cardImg" />
           </div>
         </template>
@@ -88,7 +96,11 @@ export default {
   data: () => ({
     menu: false,
     params: "",
-    cards:[],
+    dailys: [
+      { img: require("../assets/recommend/card1.png") },
+      { img: require("../assets/recommend/card2.png") },
+      { img: require("../assets/recommend/card3.png") },
+    ],
     colors: [
       { img: require("../assets/recommend/card/color1.jpg") },
       { img: require("../assets/recommend/card/color2.jpg") },
@@ -122,19 +134,55 @@ export default {
       { img: require("../assets/recommend/card/form8.jpg") },
       { img: require("../assets/recommend/card/form9.jpg") },
       { img: require("../assets/recommend/card/form10.jpg") },
-
     ],
-
-    dailys: [{}],
   }),
-  methods: {},
+  methods: {
+    SectionToChinese(section) {
+      var chnNumChar = [
+        "零",
+        "一",
+        "二",
+        "三",
+        "四",
+        "五",
+        "六",
+        "七",
+        "八",
+        "九",
+      ];
+      var chnUnitChar = ["", "十", "百", "千", "万", "亿", "万亿", "亿亿"];
+      var strIns = "",
+        chnStr = "";
+      var unitPos = 0;
+      var zero = true;
+      while (section > 0) {
+        var v = section % 10;
+        if (v === 0) {
+          if (!zero) {
+            zero = true;
+            chnStr = chnNumChar[v] + chnStr;
+          }
+        } else {
+          zero = false;
+          strIns = chnNumChar[v];
+          strIns += chnUnitChar[unitPos];
+          chnStr = strIns + chnStr;
+        }
+        unitPos++;
+        section = Math.floor(section / 10);
+      }
+      return chnStr;
+    },
+  },
   beforeMount() {
     this.params = this.$route.params.type;
     if (this.params == "daily") {
       let d = new Date();
       let month = d.getMonth();
       let day = d.getDate();
-      this.title = ` ${month + 1}月${day}日`;
+      this.title = ` ${this.SectionToChinese(
+        month + 1
+      )}月${this.SectionToChinese(day)}日`;
     } else if (this.params == "color") {
       this.title = ` 颜色`;
     } else if (this.params == "dynasty") {
@@ -154,6 +202,7 @@ export default {
   height: 100vh;
   overflow: hidden;
   max-width: 450px;
+  background-color: #f4f3f0;
 }
 .cardImg {
   width: 100%;
@@ -180,6 +229,7 @@ export default {
     position: relative;
     // top: 20vh;
     top: -20px;
+
     margin: auto;
   }
 }
