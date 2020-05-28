@@ -223,17 +223,15 @@ export default {
 
       div {
         flex: 1;
-        padding: 2.5rem 1.2rem;
+        padding: 2.5rem 1.4rem;
         img {
           width: 100%;
-          margin: auto;
+          // margin: auto;
         }
       }
-      .icon {
-        padding-right: 0.5rem;
-      }
+
       .text {
-        padding-left: 0.5rem;
+        padding-left: 0rem;
       }
     }
     & > div:last-child {
@@ -242,17 +240,15 @@ export default {
 
       div {
         flex: 1;
-        padding: 2.5rem 1.2rem;
+        padding: 2.5rem 1.4rem;
         img {
           width: 100%;
-          margin: auto;
+          // margin: auto;
         }
       }
-      .icon {
-        padding-right: 0.5rem;
-      }
+
       .text {
-        padding-left: 0.5rem;
+        padding-left: 0rem;
       }
     }
   }
