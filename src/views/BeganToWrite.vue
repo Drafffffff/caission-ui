@@ -19,34 +19,134 @@
           <div class="main" id="svg"></div>
         </div>
       </div>
-      <div class="colorPanel"></div>
-      <div class="parttenPanel">
-        <div class="selector1">
-          <div class="">
-            <img src="../assets/custom/outer/SVG/1.svg" alt="" />
-          </div>
-          <div class="">
-            <img src="../assets/custom/outer/SVG/2.svg" alt="" />
-          </div>
 
-          <div class="">
-            <img src="../assets/custom/outer/SVG/3.svg" alt="" />
+      <div class="swiper-container parttenPanel " id="swiper-container">
+        <div class="nav">
+          <span :class="active == 0 ? 'active' : ''">颜色</span>
+          <span :class="active == 1 ? 'active' : ''">垂幔</span>
+          <span :class="active == 2 ? 'active' : ''">边饰</span>
+          <span :class="active == 3 ? 'active' : ''">井心</span>
+        </div>
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <div class="selector1">
+              <div class="" @click="changeColor(0)">
+                <!-- <img src="../assets/custom/outer/SVG/1.svg" alt="" /> -->
+                <p>1</p>
+              </div>
+              <div class="" @click="changeColor(1)">
+                <!-- <img src="../assets/custom/outer/SVG/2.svg" alt="" /> -->
+                <p>2</p>
+              </div>
+
+              <div class="" @click="changeColor(2)">
+                <!-- <img src="../assets/custom/outer/SVG/3.svg" alt="" /> -->
+                <p>3</p>
+              </div>
+            </div>
+            <div class="selector2" @click="changeColor(3)">
+              <div class="">
+                <!-- <img src="../assets/custom/outer/SVG/4.svg" alt="" /> -->
+                <p>4</p>
+              </div>
+
+              <div class="" @click="changeColor(3)">
+                <!-- <img src="../assets/custom/outer/SVG/5.svg" alt="" /> -->
+                <p>5</p>
+              </div>
+
+              <div class="" @click="changeColor(3)">
+                <!-- <img src="../assets/custom/outer/SVG/6.svg" alt="" /> -->
+                <p>6</p>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="selector1">
+              <div class="" @click="outerChange(2)">
+                <img src="../assets/custom/outer/SVG/1.svg" alt="" />
+              </div>
+              <div class="" @click="outerChange(6)">
+                <img src="../assets/custom/outer/SVG/2.svg" alt="" />
+              </div>
+
+              <div class="" @click="outerChange(1)">
+                <img src="../assets/custom/outer/SVG/3.svg" alt="" />
+              </div>
+            </div>
+            <div class="selector2">
+              <div class="" @click="outerChange(3)">
+                <img src="../assets/custom/outer/SVG/4.svg" alt="" />
+              </div>
+
+              <div class="" @click="outerChange(5)">
+                <img src="../assets/custom/outer/SVG/5.svg" alt="" />
+              </div>
+
+              <div class="" @click="outerChange(4)">
+                <img src="../assets/custom/outer/SVG/6.svg" alt="" />
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="selector1">
+              <div class="" @click="midderChange(5)">
+                <img src="../assets/custom/midder/SVG/1.svg" alt="" />
+              </div>
+              <div class="" @click="midderChange(6)">
+                <img src="../assets/custom/midder/SVG/2.svg" alt="" />
+              </div>
+
+              <div class="" @click="midderChange(1)">
+                <img src="../assets/custom/midder/SVG/3.svg" alt="" />
+              </div>
+            </div>
+            <div class="selector2">
+              <div class="" @click="midderChange(3)">
+                <img src="../assets/custom/midder/SVG/4.svg" alt="" />
+              </div>
+
+              <div class="" @click="midderChange(4)">
+                <img src="../assets/custom/midder/SVG/5.svg" alt="" />
+              </div>
+
+              <div class="" @click="midderChange(2)">
+                <img src="../assets/custom/midder/SVG/6.svg" alt="" />
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="selector1">
+              <div class="" @click="innerChange(3)">
+                <img src="../assets/custom/inner/SVG/1.svg" alt="" />
+              </div>
+              <div class="" @click="innerChange(2)">
+                <img src="../assets/custom/inner/SVG/2.svg" alt="" />
+              </div>
+
+              <div class="" @click="innerChange(1)">
+                <img src="../assets/custom/inner/SVG/3.svg" alt="" />
+              </div>
+            </div>
+            <div class="selector2">
+              <div class="" @click="innerChange(6)">
+                <img src="../assets/custom/inner/SVG/4.svg" alt="" />
+              </div>
+
+              <div class="" @click="innerChange(4)">
+                <img src="../assets/custom/inner/SVG/5.svg" alt="" />
+              </div>
+
+              <div class="" @click="innerChange(5)">
+                <img src="../assets/custom/inner/SVG/6.svg" alt="" />
+              </div>
+            </div>
           </div>
         </div>
-        <div class="selector2">
-          <div class="">
-            <img src="../assets/custom/outer/SVG/4.svg" alt="" />
-          </div>
+      </div>
 
-          <div class="">
-            <img src="../assets/custom/outer/SVG/5.svg" alt="" />
-          </div>
-
-          <div class="">
-            <img src="../assets/custom/outer/SVG/6.svg" alt="" />
-          </div>
-        </div>
-        <div class="nextButton"></div>
+      <div class="nextbutton">
+        <p>下一步</p>
       </div>
     </div>
   </v-app>
@@ -55,9 +155,14 @@
 <script>
 import hammer from "hammerjs";
 import anime from "animejs/lib/anime.es.js";
+import drawShape from "../assets/shapes.js";
+import { SVG } from "@svgdotjs/svg.js";
+import Swiper from "swiper";
+import "../assets/custom/swiper.css";
 export default {
   data: () => ({
     title: "图案定制",
+    mySwiper: {},
     shapes: {},
     step: 1,
     layer: {
@@ -65,18 +170,74 @@ export default {
       midder: [0, 0, 0],
       inner: 0,
     },
+    active: 0,
   }),
-  methods: {},
+  methods: {
+    outerChange(n) {
+      this.layer.outer = n;
+      this.updateSVG();
+    },
+    midderChange(n) {
+      this.layer.midder.push(n);
+      this.layer.midder = this.layer.midder.splice(1, 3);
+      this.shapes.midder0();
+      this.updateSVG();
+    },
+    innerChange(n) {
+      this.layer.inner = 0;
+      this.layer.inner = n;
+      this.updateSVG();
+    },
+    cleanSVG() {
+      this.layer.outer = 0;
+      this.layer.inner = 0;
+      this.layer.midder = [0, 0, 0];
+      this.updateSVG();
+    },
+    updateSVG() {
+      let drawOuter = "outer" + this.layer.outer.toString();
+      let drawInner = "inner" + this.layer.inner.toString();
+      let drawMidder = [];
+      for (let i = 0; i < 3; i++) {
+        drawMidder.push("midder" + this.layer.midder[i].toString());
+      }
+      this.shapes[drawOuter]();
+      for (let i = 0; i < 3; i++) {
+        this.shapes[drawMidder[i]]();
+      }
+      this.shapes[drawInner]();
+    },
+    changeColor(n){
+      this.shapes.colors = this.shapes.themes[n];
+      this.updateSVG();
+    }
+  },
   mounted() {
-    console.log(this.width);
+    const self = this;
+    this.shapes = new drawShape(
+      SVG()
+        .addTo("#svg")
+        .size(this.width, this.width)
+    );
+    this.shapes.width = this.width;
     document.getElementById("maincanvas").style.width =
-      this.width * (0.9).toString() + "px";
+      (this.width + 40).toString() + "px";
     document.getElementById("maincanvas").style.height =
-      this.width * (0.9).toString() + "px";
+      (this.width + 40).toString() + "px";
+    // this.shapes.outer6();
+    this.mySwiper = new Swiper(".swiper-container", {
+      // autoplay: true, //可选选项，自动滑动
+      on: {
+        slideChangeTransitionStart: function() {
+          self.active = this.activeIndex;
+        },
+      },
+    });
+    this.changeColor(3);
   },
   computed: {
     width: function() {
-      return document.getElementById("canvas").offsetWidth;
+      return document.getElementById("canvas").offsetWidth * 0.9 - 40;
     },
   },
 };
@@ -86,7 +247,7 @@ export default {
 #inspire {
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
+  // overflow: hidden;
   max-width: 450px;
 }
 .panel {
@@ -96,36 +257,50 @@ export default {
   .canvas {
     margin: auto;
     background-color: #f4f3f0;
-    box-shadow: 0 5px 10px gray;
+    // box-shadow: 0 5px 10px gray;
     border-radius: 20px;
     padding: 20px;
 
     #svg {
       width: 100%;
       height: 100%;
-      background-color: #000;
+      // background-color: #999;
+      background-image: url("../assets/custom/bg.png");
+      background-size: cover;
     }
   }
-  .colorPanel {
-    width: 90%;
-    margin: 20px auto;
-    height: 80px;
-    border-radius: 20px;
-    background-color: #f4f3f0;
-  }
+
   .parttenPanel {
     // height: 100%;
     width: 90%;
     margin: auto;
+    margin-top: 20px;
     border-radius: 20px;
     padding: 20px;
     background-color: #f4f3f0;
+    .nav {
+        height: 25px;
+
+      & > span {
+        font-size: 0.8rem;
+      height: 30px;
+        padding: 0 5px;
+        color: gray;
+        transition: all 0.3s ease-in-out;
+        &.active {
+          font-size: 1.2rem;
+          color: #ac845d;
+        }
+      }
+      margin-bottom: 10px;
+    }
     .selector1 {
       display: flex;
       justify-content: space-around;
 
       div {
         width: 70px;
+        height: 70px;
         border-radius: 10px;
         background-color: #fff;
         padding: 10px;
@@ -138,14 +313,24 @@ export default {
       div {
         border-radius: 10px;
         width: 70px;
+        height: 70px;
+
         background-color: #fff;
         padding: 10px;
       }
     }
-    .nextButton {
-      height: 80px;
-      margin-top: 5px;
-      background-color: rgb(221, 205, 169);
+  }
+  .nextbutton {
+    width: 90%;
+    margin: 20px auto;
+    height: 80px;
+    border-radius: 20px;
+    background-color: #f4f3f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    p{
+      margin: 0;
     }
   }
 }

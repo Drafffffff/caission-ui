@@ -395,12 +395,13 @@ export default {
           }
         }
         .text {
-          position: absolute;
+          // position: absolute;
           transform: translateY(-150px);
           width: 90%;
           // float: left;
           p {
             display: block;
+            // height: 300px;
           }
           p.main {
             color: rgb(236, 236, 236);
@@ -419,6 +420,7 @@ export default {
 
       .color {
         margin: 1rem 1.5rem;
+        height: 150px;
         .bg {
           // flex: 1;
           background-image: url("../assets/recommend/1.png");
@@ -427,6 +429,7 @@ export default {
 
       .dynasty {
         margin: 1rem 1.5rem;
+        height: 150px;
         .bg {
           // flex: 1;
           background-image: url("../assets/recommend/2.png");
@@ -434,6 +437,7 @@ export default {
       }
       .form {
         margin: 1rem 1.5rem;
+        height: 150px;
         .bg {
           // flex: 1;
           background-image: url("../assets/recommend/3.png");

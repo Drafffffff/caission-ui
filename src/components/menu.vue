@@ -61,15 +61,15 @@ export default {
   top: 0;
   right: -150px;
   height: 100vh;
-  width: 150px;
+  width: 100px;
   z-index: 0;
   .menu-list {
     display: flex;
     flex-direction: column;
   }
   .menu-item {
-    width: 5rem;
-    height: 5rem;
+    width: 4rem;
+    height: 4rem;
     // background-color: gray;
     margin: 1.3rem auto;
     border-radius: 50%;

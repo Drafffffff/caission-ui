@@ -12,7 +12,7 @@
       </v-card>
 
       <div class="pull-panel" elevation="20">
-        <div class="patten" @click="toggleUp">
+        <div class="patten" >
           <img src="../assets/recommend/button.png" alt="" />
         </div>
       </div>
