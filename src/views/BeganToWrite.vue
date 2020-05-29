@@ -30,32 +30,50 @@
         <div class="swiper-wrapper">
           <div class="swiper-slide">
             <div class="selector1">
-              <div class="" @click="changeColor(0)">
+              <div
+                :class="color == 0 ? 'active' : ''"
+                @click="changeColor(0)"
+              >
                 <!-- <img src="../assets/custom/outer/SVG/1.svg" alt="" /> -->
                 <p>1</p>
               </div>
-              <div class="" @click="changeColor(1)">
+              <div
+                :class="color == 1 ? 'active' : ''"
+                @click="changeColor(1)"
+              >
                 <!-- <img src="../assets/custom/outer/SVG/2.svg" alt="" /> -->
                 <p>2</p>
               </div>
 
-              <div class="" @click="changeColor(2)">
+              <div
+                :class="color == 2 ? 'active' : ''"
+                @click="changeColor(2)"
+              >
                 <!-- <img src="../assets/custom/outer/SVG/3.svg" alt="" /> -->
                 <p>3</p>
               </div>
             </div>
-            <div class="selector2" @click="changeColor(3)">
-              <div class="">
+            <div class="selector2">
+              <div
+                :class="color == 3 ? 'active' : ''"
+                @click="changeColor(3)"
+              >
                 <!-- <img src="../assets/custom/outer/SVG/4.svg" alt="" /> -->
                 <p>4</p>
               </div>
 
-              <div class="" @click="changeColor(3)">
+              <div
+                :class="color == 3 ? 'active' : ''"
+                @click="changeColor(3)"
+              >
                 <!-- <img src="../assets/custom/outer/SVG/5.svg" alt="" /> -->
                 <p>5</p>
               </div>
 
-              <div class="" @click="changeColor(3)">
+              <div
+                :class="color == 3 ? 'active' : ''"
+                @click="changeColor(3)"
+              >
                 <!-- <img src="../assets/custom/outer/SVG/6.svg" alt="" /> -->
                 <p>6</p>
               </div>
@@ -63,81 +81,135 @@
           </div>
           <div class="swiper-slide">
             <div class="selector1">
-              <div class="" @click="outerChange(2)">
+              <div
+                :class="layer.outer == 2 ? 'active' : ''"
+                @click="outerChange(2)"
+              >
                 <img src="../assets/custom/outer/SVG/1.svg" alt="" />
               </div>
-              <div class="" @click="outerChange(6)">
+              <div
+                :class="layer.outer == 6 ? 'active' : ''"
+                @click="outerChange(6)"
+              >
                 <img src="../assets/custom/outer/SVG/2.svg" alt="" />
               </div>
 
-              <div class="" @click="outerChange(1)">
+              <div
+                :class="layer.outer == 1 ? 'active' : ''"
+                @click="outerChange(1)"
+              >
                 <img src="../assets/custom/outer/SVG/3.svg" alt="" />
               </div>
             </div>
             <div class="selector2">
-              <div class="" @click="outerChange(3)">
+              <div
+                :class="layer.outer == 3 ? 'active' : ''"
+                @click="outerChange(3)"
+              >
                 <img src="../assets/custom/outer/SVG/4.svg" alt="" />
               </div>
 
-              <div class="" @click="outerChange(5)">
+              <div
+                :class="layer.outer == 5 ? 'active' : ''"
+                @click="outerChange(5)"
+              >
                 <img src="../assets/custom/outer/SVG/5.svg" alt="" />
               </div>
 
-              <div class="" @click="outerChange(4)">
+              <div
+                :class="layer.outer == 4 ? 'active' : ''"
+                @click="outerChange(4)"
+              >
                 <img src="../assets/custom/outer/SVG/6.svg" alt="" />
               </div>
             </div>
           </div>
           <div class="swiper-slide">
             <div class="selector1">
-              <div class="" @click="midderChange(5)">
+              <div
+                :class="layer.midder.indexOf(5) > -1 ? 'active' : ''"
+                @click="midderChange(5)"
+              >
                 <img src="../assets/custom/midder/SVG/1.svg" alt="" />
               </div>
-              <div class="" @click="midderChange(6)">
+              <div
+                :class="layer.midder.indexOf(6) > -1 ? 'active' : ''"
+                @click="midderChange(6)"
+              >
                 <img src="../assets/custom/midder/SVG/2.svg" alt="" />
               </div>
 
-              <div class="" @click="midderChange(1)">
+              <div
+                :class="layer.midder.indexOf(1) > -1 ? 'active' : ''"
+                @click="midderChange(1)"
+              >
                 <img src="../assets/custom/midder/SVG/3.svg" alt="" />
               </div>
             </div>
             <div class="selector2">
-              <div class="" @click="midderChange(3)">
+              <div
+                :class="layer.midder.indexOf(3) > -1 ? 'active' : ''"
+                @click="midderChange(3)"
+              >
                 <img src="../assets/custom/midder/SVG/4.svg" alt="" />
               </div>
 
-              <div class="" @click="midderChange(4)">
+              <div
+                :class="layer.midder.indexOf(4) > -1 ? 'active' : ''"
+                @click="midderChange(4)"
+              >
                 <img src="../assets/custom/midder/SVG/5.svg" alt="" />
               </div>
 
-              <div class="" @click="midderChange(2)">
+              <div
+                :class="layer.midder.indexOf(2) > -1 ? 'active' : ''"
+                @click="midderChange(2)"
+              >
                 <img src="../assets/custom/midder/SVG/6.svg" alt="" />
               </div>
             </div>
           </div>
           <div class="swiper-slide">
             <div class="selector1">
-              <div class="" @click="innerChange(3)">
+              <div
+                :class="layer.inner == 3 ? 'active' : ''"
+                @click="innerChange(3)"
+              >
                 <img src="../assets/custom/inner/SVG/1.svg" alt="" />
               </div>
-              <div class="" @click="innerChange(2)">
+              <div
+                :class="layer.inner == 2 ? 'active' : ''"
+                @click="innerChange(2)"
+              >
                 <img src="../assets/custom/inner/SVG/2.svg" alt="" />
               </div>
 
-              <div class="" @click="innerChange(1)">
+              <div
+                :class="layer.inner == 1 ? 'active' : ''"
+                @click="innerChange(1)"
+              >
                 <img src="../assets/custom/inner/SVG/3.svg" alt="" />
               </div>
             </div>
             <div class="selector2">
-              <div class="" @click="innerChange(6)">
+              <div
+                :class="layer.inner == 6 ? 'active' : ''"
+                @click="innerChange(6)"
+              >
                 <img src="../assets/custom/inner/SVG/4.svg" alt="" />
               </div>
 
-              <div class="" @click="innerChange(4)">
+              <div
+                :class="layer.inner == 4 ? 'active' : ''"
+                @click="innerChange(4)"
+              >
                 <img src="../assets/custom/inner/SVG/5.svg" alt="" />
               </div>
 
-              <div class="" @click="innerChange(5)">
+              <div
+                :class="layer.inner == 5 ? 'active' : ''"
+                @click="innerChange(5)"
+              >
                 <img src="../assets/custom/inner/SVG/6.svg" alt="" />
               </div>
             </div>
@@ -171,6 +243,7 @@ export default {
       inner: 0,
     },
     active: 0,
+    color: "",
   }),
   methods: {
     outerChange(n) {
@@ -207,10 +280,11 @@ export default {
       }
       this.shapes[drawInner]();
     },
-    changeColor(n){
+    changeColor(n) {
       this.shapes.colors = this.shapes.themes[n];
+      this.color = n;
       this.updateSVG();
-    }
+    },
   },
   mounted() {
     const self = this;
@@ -233,7 +307,6 @@ export default {
         },
       },
     });
-    this.changeColor(3);
   },
   computed: {
     width: function() {
@@ -279,11 +352,11 @@ export default {
     padding: 20px;
     background-color: #f4f3f0;
     .nav {
-        height: 25px;
+      height: 25px;
 
       & > span {
         font-size: 0.8rem;
-      height: 30px;
+        height: 30px;
         padding: 0 5px;
         color: gray;
         transition: all 0.3s ease-in-out;
@@ -304,6 +377,10 @@ export default {
         border-radius: 10px;
         background-color: #fff;
         padding: 10px;
+        transition: all 0.3s ease-in-out;
+      }
+      & > .active {
+        border: 3px solid #ac845d;
       }
     }
     .selector2 {
@@ -317,6 +394,10 @@ export default {
 
         background-color: #fff;
         padding: 10px;
+        transition: all 0.3s ease-in-out;
+      }
+      & > .active {
+        border: 3px solid #ac845d;
       }
     }
   }
@@ -329,7 +410,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    p{
+    p {
       margin: 0;
     }
   }

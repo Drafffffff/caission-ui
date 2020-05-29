@@ -6,13 +6,11 @@
       </div>
 
       <v-card class="card">
-        <div class="card-img">
-          <swiper />
-        </div>
+        <div class="card-img"></div>
       </v-card>
 
       <div class="pull-panel" elevation="20">
-        <div class="patten" >
+        <div class="patten">
           <img src="../assets/recommend/button.png" alt="" />
         </div>
       </div>
@@ -22,13 +20,16 @@
           <div icon>
             <img class="icon" src="../assets/custom/dingzhi.png" alt="" />
           </div>
-          <div class="text">开始定制</div>
+          <div class="text">
+            开始<br />
+            定制
+          </div>
         </div>
         <div class="doodle-button" elevation="1" @click="doodleClickHandle">
           <div icon>
             <img class="icon" src="../assets/custom/tuya.png" alt="" />
           </div>
-          <div class="text">开始涂鸦</div>
+          <div class="text">开始<br />涂鸦</div>
         </div>
       </div>
     </v-content>
@@ -58,7 +59,7 @@ export default {
         console.log("toggle Menu");
         anime({
           targets: "#recommedmain",
-          translateX: -150,
+          translateX: -100,
           easing: "linear",
           duration: 200,
         });
@@ -220,12 +221,13 @@ export default {
       margin-left: 20px;
       margin-right: 15px;
       display: flex;
-
       div {
         flex: 1;
-        padding: 2.5rem 1.4rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         img {
-          width: 100%;
+          width: 50px;
           // margin: auto;
         }
       }
@@ -237,12 +239,13 @@ export default {
     & > div:last-child {
       margin-right: 20px;
       display: flex;
-
       div {
         flex: 1;
-        padding: 2.5rem 1.4rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         img {
-          width: 100%;
+          width: 50px;
           // margin: auto;
         }
       }

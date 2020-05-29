@@ -29,7 +29,7 @@ export default {
         console.log("toggle Menu");
         anime({
           targets: "#recommedmain",
-          translateX: -150,
+          translateX: -100,
           easing: "linear",
           duration: 200,
         });
