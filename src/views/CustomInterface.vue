@@ -6,8 +6,31 @@
       </div>
 
       <v-card class="card">
-        <div class="card-img"></div>
+        <div class="card-img ">
+          <div class="swiper-container">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img src="../assets/custom/show1.png" alt="" />
+              </div>
+              <div class="swiper-slide">
+                <img src="../assets/custom/show2.png" alt="" />
+              </div>
+              <div class="swiper-slide">
+                <img src="../assets/custom/show3.png" alt="" />
+              </div>
+              <div class="swiper-slide">
+                <img src="../assets/custom/show4.png" alt="" />
+              </div>
+            </div>
+          </div>
+        </div>
       </v-card>
+      <div class="card-title">
+        <p v-if="imgi == 0">藻井结构示意</p>
+        <p v-if="imgi == 1">垂幔层</p>
+        <p v-if="imgi == 2">边饰层</p>
+        <p v-if="imgi == 3">井心层</p>
+      </div>
 
       <div class="pull-panel" elevation="20">
         <div class="patten">
@@ -43,15 +66,18 @@
 import hammer from "hammerjs";
 import anime from "animejs/lib/anime.es.js";
 import mainmenu from "../components/menu";
-import swiper from "../components/swiper";
+import Swiper from "swiper";
+import "../assets/custom/swiper.css";
+
 export default {
   components: {
     mainmenu,
-    swiper,
+    // swiper,
   },
   data: () => ({
     menu: false,
     title: "定制",
+    imgi: 0,
   }),
   methods: {
     toggleMenu() {
@@ -104,13 +130,22 @@ export default {
     },
   },
   mounted() {
+    const self = this;
+    var mySwiper = new Swiper(".swiper-container", {
+      autoplay: true, //可选选项，自动滑动
+      on: {
+        slideChangeTransitionStart: function() {
+          self.imgi = this.activeIndex;
+        },
+      },
+    });
     let bodyEl = document.querySelector(".app");
     this.hammerBody = new Hammer(bodyEl);
-    this.hammerBody.on("swipeleft", (ev) => {
+    this.hammerBody.on("swipeleft", ev => {
       this.toggleMenu();
       // console.log(ev);
     });
-    this.hammerBody.on("swiperight", (ev) => {
+    this.hammerBody.on("swiperight", ev => {
       this.toggleBackMenu();
       // console.log(ev);
     });
@@ -135,7 +170,6 @@ export default {
   height: 100vh;
   width: 150px;
   z-index: 0;
-
   // opacity: 0;
   .menu-list {
     display: flex;
@@ -158,6 +192,9 @@ export default {
   .title {
     width: 100vw;
     z-index: 100;
+    color: #fff;
+    font-weight: bolder;
+    letter-spacing: 1rem;
     position: absolute;
     p {
       text-align: center;
@@ -175,14 +212,30 @@ export default {
     z-index: 20;
     top: 6vh;
     border-radius: 20px;
+    overflow: hidden;
+
     .card-img {
+      // margin: 50px;
       width: 100%;
       height: 90vmin;
       overflow: hidden;
+      img {
+        width: 100%;
+      }
     }
-    .card-title {
-      position: absolute;
-      bottom: 0px;
+  }
+  .card-title {
+    position: absolute;
+    top: 52vh;
+    z-index: 20;
+    width: 100vw;
+    p {
+      width: 100%;
+      text-align: center;
+      font-size: 1.2rem;
+      color: #fff;
+      font-weight: bolder;
+      letter-spacing: 0.6rem;
     }
   }
   .pull-panel {
@@ -190,16 +243,16 @@ export default {
     top: 0;
     z-index: 10;
     width: 100vw;
-    height: 70vh;
+    height: 63vh;
     border-radius: 0 0 20px 20px;
-    background-color: #f4f3f0;
+    background-color: rgb(221, 205, 169);
     box-shadow: 0px 5px 30px rgb(179, 179, 179);
     .patten {
       width: 80px;
       height: 80px;
       background-color: rgb(206, 206, 206);
       position: relative;
-      top: 70vh;
+      top: 63vh;
       margin: 0 auto;
       border-radius: 10px;
       transform: translateY(-40px) rotate(45deg);
@@ -207,7 +260,7 @@ export default {
   }
   .button-card {
     position: absolute;
-    bottom: 0;
+    bottom: 5vh;
     width: 100%;
     height: 25vh;
     display: flex;
@@ -228,7 +281,6 @@ export default {
         align-items: center;
         img {
           width: 50px;
-          // margin: auto;
         }
       }
 
@@ -246,7 +298,6 @@ export default {
         align-items: center;
         img {
           width: 50px;
-          // margin: auto;
         }
       }
 

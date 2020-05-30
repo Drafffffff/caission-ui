@@ -16,7 +16,7 @@
     <div class="panel" id="canvas">
       <div class="">
         <div class="canvas" id="maincanvas">
-          <div class="main" id="svg"></div>
+          <div class="main" :class="bg[active]" id="svg"></div>
         </div>
       </div>
 
@@ -30,52 +30,28 @@
         <div class="swiper-wrapper">
           <div class="swiper-slide">
             <div class="selector1">
-              <div
-                :class="color == 0 ? 'active' : ''"
-                @click="changeColor(0)"
-              >
-                <!-- <img src="../assets/custom/outer/SVG/1.svg" alt="" /> -->
-                <p>1</p>
+              <div :class="color == 0 ? 'active' : ''" @click="changeColor(0)">
+                <img src="../assets/custom/color/6.svg" alt="" />
               </div>
-              <div
-                :class="color == 1 ? 'active' : ''"
-                @click="changeColor(1)"
-              >
-                <!-- <img src="../assets/custom/outer/SVG/2.svg" alt="" /> -->
-                <p>2</p>
+              <div :class="color == 1 ? 'active' : ''" @click="changeColor(1)">
+                <img src="../assets/custom/color/5.svg" alt="" />
               </div>
 
-              <div
-                :class="color == 2 ? 'active' : ''"
-                @click="changeColor(2)"
-              >
-                <!-- <img src="../assets/custom/outer/SVG/3.svg" alt="" /> -->
-                <p>3</p>
+              <div :class="color == 2 ? 'active' : ''" @click="changeColor(2)">
+                <img src="../assets/custom/color/4.svg" alt="" />
               </div>
             </div>
             <div class="selector2">
-              <div
-                :class="color == 3 ? 'active' : ''"
-                @click="changeColor(3)"
-              >
-                <!-- <img src="../assets/custom/outer/SVG/4.svg" alt="" /> -->
-                <p>4</p>
+              <div :class="color == 3 ? 'active' : ''" @click="changeColor(3)">
+                <img src="../assets/custom/color/3.svg" alt="" />
               </div>
 
-              <div
-                :class="color == 3 ? 'active' : ''"
-                @click="changeColor(3)"
-              >
-                <!-- <img src="../assets/custom/outer/SVG/5.svg" alt="" /> -->
-                <p>5</p>
+              <div :class="color == 3 ? 'active' : ''" @click="changeColor(4)">
+                <img src="../assets/custom/color/2.svg" alt="" />
               </div>
 
-              <div
-                :class="color == 3 ? 'active' : ''"
-                @click="changeColor(3)"
-              >
-                <!-- <img src="../assets/custom/outer/SVG/6.svg" alt="" /> -->
-                <p>6</p>
+              <div :class="color == 3 ? 'active' : ''" @click="changeColor(5)">
+                <img src="../assets/custom/color/1.svg" alt="" />
               </div>
             </div>
           </div>
@@ -244,6 +220,7 @@ export default {
     },
     active: 0,
     color: "",
+    bg: ["bg", "bgout", "bgmid", "bgin"],
   }),
   methods: {
     outerChange(n) {
@@ -274,11 +251,11 @@ export default {
       for (let i = 0; i < 3; i++) {
         drawMidder.push("midder" + this.layer.midder[i].toString());
       }
-      this.shapes[drawOuter]();
       for (let i = 0; i < 3; i++) {
         this.shapes[drawMidder[i]]();
       }
       this.shapes[drawInner]();
+      this.shapes[drawOuter]();
     },
     changeColor(n) {
       this.shapes.colors = this.shapes.themes[n];
@@ -338,8 +315,20 @@ export default {
       width: 100%;
       height: 100%;
       // background-color: #999;
-      background-image: url("../assets/custom/bg.png");
+
       background-size: cover;
+    }
+    .bg {
+      background-image: url("../assets/custom/bg.png");
+    }
+    .bgin {
+      background-image: url("../assets/custom/bgin.png");
+    }
+    .bgmid {
+      background-image: url("../assets/custom/bgmid.png");
+    }
+    .bgout {
+      background-image: url("../assets/custom/bgout.png");
     }
   }
 
@@ -395,6 +384,7 @@ export default {
         background-color: #fff;
         padding: 10px;
         transition: all 0.3s ease-in-out;
+        
       }
       & > .active {
         border: 3px solid #ac845d;

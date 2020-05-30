@@ -1,8 +1,8 @@
 export default class drawShape {
   constructor(draw) {
-    this.outer = draw.group();
     this.midder = draw.group();
     this.inner = draw.group();
+    this.outer = draw.group();
     this.colors = [
       "#f3ede4",
       "#95c7b6",
@@ -16,6 +16,8 @@ export default class drawShape {
       ["#f2ecd4", "#f0d680", "#bc8a59", "#955424", "#eaba66"],
       ["#f3ede4", "#e7be99", "#8ab1d7", "#165275", "#bedaeb"],
       ["#f3f0eb", "#e7be99", "#9da589", "#5a6257", "#89b6ae"],
+      ["#F3EDE4", "#e7be99", "#E69091", "#99D1C2", "#37ACA7"],
+      ["#F3F0EB", "#C5E3D3", "#88B5B6", "#6A7892", "#444058"],
     ];
   }
   outer0() {
@@ -432,7 +434,7 @@ export default class drawShape {
 
     g.size(this.width / 2, this.width / 2);
 
-    let sc = 0.4;
+    let sc = 0.37;
     g.scale(sc, sc, 0, 0);
 
     let outerC2 = outerC1.clone();
@@ -865,7 +867,7 @@ export default class drawShape {
 
     g.size(this.width / 2, this.width / 2);
 
-    let sc = 0.752;
+    let sc = 1;
     g.scale(sc, sc, this.width / 2, this.width / 2);
 
     let outerC2 = outerC1.clone();
@@ -1405,7 +1407,7 @@ export default class drawShape {
 
     g.size(this.width / 2, this.width / 2);
 
-    let sc = 0.5;
+    let sc = 0.6;
     g.scale(sc, sc, this.width / 2, this.width / 2);
     g.center(this.width / 2, this.width / 2);
   }
@@ -1567,7 +1569,7 @@ export default class drawShape {
 
     g.size(this.width / 2, this.width / 2);
 
-    let sc = 0.5;
+    let sc = 0.6;
     g.scale(sc, sc, this.width / 2, this.width / 2);
     g.center(this.width / 2, this.width / 2);
   }
@@ -1618,7 +1620,7 @@ export default class drawShape {
     ).fill(this.colors[0]);
     g.size(this.width / 2, this.width / 2);
 
-    let sc = 0.5;
+    let sc = 0.6;
     g.scale(sc, sc, this.width / 2, this.width / 2);
     g.center(this.width / 2, this.width / 2);
   }

@@ -4,6 +4,101 @@
       <div class="title">
         <p>{{ title }}</p>
       </div>
+      <div class="goods">
+        <div class="categroy">
+          <div class="title">
+            杯垫系列
+          </div>
+          <div class="items">
+            <div class="item">
+              <img src="../assets/store/1.png" alt="" />
+              <p>item1</p>
+            </div>
+            <div class="item">
+              <img src="../assets/store/2.png" alt="" />
+              <p>item2</p>
+            </div>
+            <div class="item">
+              <img src="../assets/store/3.png" alt="" />
+              <p>item3</p>
+            </div>
+            <div class="item">
+              <img src="../assets/store/4.png" alt="" />
+              <p>item4</p>
+            </div>
+          </div>
+        </div>
+        <div class="categroy">
+          <div class="title">
+            冰箱贴系列
+          </div>
+          <div class="items">
+            <div class="item">
+              <img src="../assets/store/5.png" alt="" />
+              <p>item1</p>
+            </div>
+            <div class="item">
+              <img src="../assets/store/6.png" alt="" />
+              <p>item2</p>
+            </div>
+            <div class="item">
+              <img src="../assets/store/7.png" alt="" />
+              <p>item3</p>
+            </div>
+            <div class="item">
+              <img src="../assets/store/8.png" alt="" />
+              <p>item4</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="categroy">
+          <div class="title">
+            钥匙扣系列
+          </div>
+          <div class="items">
+            <div class="item">
+              <img src="../assets/store/11.png" alt="" />
+              <p>item1</p>
+            </div>
+            <div class="item">
+              <img src="../assets/store/12.png" alt="" />
+              <p>item2</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="categroy">
+          <div class="title">
+            火漆印章系列
+          </div>
+          <div class="items">
+            <div class="item">
+              <img src="../assets/store/9.png" alt="" />
+              <p>item1</p>
+            </div>
+            <div class="item">
+              <img src="../assets/store/10.png" alt="" />
+              <p>item2</p>
+            </div>
+          </div>
+        </div>
+        <div class="categroy">
+          <div class="title">
+            贴纸系列
+          </div>
+          <div class="items">
+            <div class="item">
+              <img src="../assets/store/13.png" alt="" />
+              <p>item1</p>
+            </div>
+            <div class="item">
+              <img src="../assets/store/14.png" alt="" />
+              <p>item2</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </v-content>
     <div class="menu">
       <mainmenu current="Store" />
@@ -29,7 +124,7 @@ export default {
         console.log("toggle Menu");
         anime({
           targets: "#recommedmain",
-          translateX: -150,
+          translateX: -100,
           easing: "linear",
           duration: 200,
         });
@@ -89,7 +184,43 @@ export default {
   height: 100vh;
   overflow: hidden;
   max-width: 450px;
+  background-color: #f5f4f1;
 }
+.goods {
+  padding-right: 20px;
+  overflow: scroll;
+  height: 88vh;
+  .categroy {
+    margin-bottom: 20px;
+    display: flex;
+    
+    .title {
+      flex: 1;
+      padding-left: 35px;
+      writing-mode: vertical-lr;
+      color:#ac845d;
+      font-size: 0.5rem;
+    }
+    .items {
+      flex: 5;
+      display: flex;
+      flex-wrap: wrap;
+      .item {
+        width: 50%;
+        // background-color:aquamarine;
+        padding: 10px;
+        padding-top: 0;
+        img {
+          width: 100%;
+        }
+        p {
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
 .menu {
   position: absolute;
   top: 0;
@@ -119,7 +250,7 @@ export default {
   overflow: hidden;
   .title {
     width: 100vw;
-    position: absolute;
+    // position: absolute;
     p {
       text-align: center;
       padding: 1rem 0;

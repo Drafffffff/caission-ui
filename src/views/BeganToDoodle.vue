@@ -14,8 +14,9 @@
       </div>
     </v-content>
     <div class="panel" id="canvas">
-      <div class="">
-        <div class="canvas" id="maincanvas">
+      <div class="bg" >
+        <!-- <img src="../assets/custom/bgin.png" alt=""> -->
+        <div class="canvas" id="maincanvas"  :class="bg[flag.processFlag]">
           <vue-p5 @setup="setup" @draw="draw"> </vue-p5>
         </div>
       </div>
@@ -65,12 +66,14 @@ export default {
     },
     colors: ["#b46530", "#bc8a59", "#89b6ae", "#8ab1d7", "#95c7b6", "#e7be99", "#f3ede4"],
     color: "",
+        bg: ["","bgout", "bgmid", "bgin"],
   }),
   methods: {
     setup(sketch) {
       sketch.createCanvas(this.width, this.width);
       // sketch.text("Hello p5!", 40, 40);
-      sketch.background(220);
+        document.querySelector('.canvas > div').className = " bgout"
+      // sketch.background(220);
       sketch.frameRate(200);
     },
     draw(sketch) {
@@ -85,7 +88,18 @@ export default {
       }
     },
     changeFLag(n) {
+      console.log(n)
       this.flag.processFlag = n;
+      if(n==1){
+        document.querySelector('.canvas > div').className = " bgout"
+      }
+      if(n==2){
+          document.querySelector('.canvas > div').className = " bgmid"
+
+      }
+      if(n==3){
+         document.querySelector('.canvas > div').className = " bgin"
+      }
     },
     changeColor(n){
       this.flag.curColor=n;
@@ -121,13 +135,13 @@ export default {
             sketch.mouseY,
             0,
             sketch.width - sketch.width / 3.7,
+            sketch.width / 3.7,
             sketch.width,
-            sketch.width / 3.7
           ) ||
           this.collidePointRect(
             sketch.mouseX,
             sketch.mouseY,
-            sketch.width - sketch.width / 3.7,
+            sketch.width - sketch.width / 3.7,  
             sketch.width - sketch.width / 3.7,
             sketch.width,
             sketch.width
@@ -137,6 +151,9 @@ export default {
           sketch.stroke(this.colors[this.flag.curColor]);
           for (let i = 0; i < 4; i++) {
             sketch.rotate(sketch.PI / 2);
+                        let d = sketch.dist(mx, my, pmx, pmy);
+            let sw = sketch.map(d, 0, 20, 14, 1);
+            sketch.strokeWeight(sw);
             sketch.line(mx, my, pmx, pmy);
           }
           // line(mx, my, pmx, pmy);
@@ -177,6 +194,9 @@ export default {
             sketch.strokeWeight(4);
             for (let i = 0; i < 6; i++) {
               sketch.rotate(sketch.TWO_PI / 6);
+                          let d = sketch.dist(mx, my, pmx, pmy);
+            let sw = sketch.map(d, 0, 20, 14, 1);
+            sketch.strokeWeight(sw);
               sketch.line(mx, my, pmx, pmy);
             }
           }
@@ -208,6 +228,9 @@ export default {
           sketch.strokeWeight(4);
           for (let i = 0; i < 12; i++) {
             sketch.rotate(sketch.TWO_PI / 12);
+            let d = sketch.dist(mx, my, pmx, pmy);
+            let sw = sketch.map(d, 0, 20, 14, 1);
+            sketch.strokeWeight(sw);
             sketch.line(mx, my, pmx, pmy);
           }
 
@@ -246,7 +269,6 @@ export default {
   },
   mounted() {
     const self = this;
-
     document.getElementById("maincanvas").style.width =
       (this.width + 40).toString() + "px";
     document.getElementById("maincanvas").style.height =
@@ -279,9 +301,34 @@ export default {
     margin: auto;
     background-color: #f4f3f0;
     // box-shadow: 0 5px 10px gray;
+    // background-color: #000;
     border-radius: 20px;
     padding: 20px;
+    div{
+      background-size: cover;
+    }
+    .bgin {
+      background-image: url("../assets/custom/bgin.png");
+    }
+    .bgmid {
+      background-image: url("../assets/custom/bgmid.png");
+    }
+    .bgout {
+      background-image: url("../assets/custom/bgout.png");
+    }
   }
+  
+#canvas{
+      .bgin {
+      background-image: url("../assets/custom/bgin.png");
+    }
+    .bgmid {
+      background-image: url("../assets/custom/bgmid.png");
+    }
+    .bgout {
+      background-image: url("../assets/custom/bgout.png");
+    }
+}
 
   .parttenPanel {
     // height: 100%;

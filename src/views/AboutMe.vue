@@ -4,6 +4,11 @@
       <div class="title">
         <p>{{ title }}</p>
       </div>
+      <div class="myprofile">
+        <div class="avatar">
+          <img src="../assets/aboutme/avatar.svg" alt="" />
+        </div>
+      </div>
     </v-content>
     <div class="menu">
       <mainmenu current="Store" />
@@ -117,9 +122,18 @@ export default {
 
 .content {
   overflow: hidden;
+  .myprofile {
+    .avatar {
+      img {
+        height:70px;
+        width:70px;
+        margin: 0 auto;
+      }
+    }
+  }
   .title {
     width: 100vw;
-    position: absolute;
+    // position: absolute;
     p {
       text-align: center;
       padding: 1rem 0;
