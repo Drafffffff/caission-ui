@@ -193,7 +193,7 @@
         </div>
       </div>
 
-      <div class="nextbutton">
+      <div class="nextbutton" @click="$router.push('ProductDetails')">
         <p>下一步</p>
       </div>
     </div>
@@ -384,7 +384,6 @@ export default {
         background-color: #fff;
         padding: 10px;
         transition: all 0.3s ease-in-out;
-        
       }
       & > .active {
         border: 3px solid #ac845d;

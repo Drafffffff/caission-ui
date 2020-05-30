@@ -6,7 +6,7 @@
           class="mx-5 my-2 back"
           fab
           color="gray"
-          @click="$router.push('/recommendeddaily')"
+          @click="$router.push('/')"
         >
           <v-icon>mdi-arrow-left </v-icon>
         </v-btn>

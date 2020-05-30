@@ -12,19 +12,19 @@
           <div class="items">
             <div class="item">
               <img src="../assets/store/1.png" alt="" />
-              <p>item1</p>
+              <p>杯垫1</p>
             </div>
             <div class="item">
               <img src="../assets/store/2.png" alt="" />
-              <p>item2</p>
+              <p>杯垫2</p>
             </div>
             <div class="item">
               <img src="../assets/store/3.png" alt="" />
-              <p>item3</p>
+              <p>杯垫3</p>
             </div>
             <div class="item">
               <img src="../assets/store/4.png" alt="" />
-              <p>item4</p>
+              <p>杯垫4</p>
             </div>
           </div>
         </div>
@@ -35,19 +35,19 @@
           <div class="items">
             <div class="item">
               <img src="../assets/store/5.png" alt="" />
-              <p>item1</p>
+              <p>冰箱贴1</p>
             </div>
             <div class="item">
               <img src="../assets/store/6.png" alt="" />
-              <p>item2</p>
+              <p>冰箱贴2</p>
             </div>
             <div class="item">
               <img src="../assets/store/7.png" alt="" />
-              <p>item3</p>
+              <p>冰箱贴3</p>
             </div>
             <div class="item">
               <img src="../assets/store/8.png" alt="" />
-              <p>item4</p>
+              <p>冰箱贴4</p>
             </div>
           </div>
         </div>
@@ -59,11 +59,11 @@
           <div class="items">
             <div class="item">
               <img src="../assets/store/11.png" alt="" />
-              <p>item1</p>
+              <p>钥匙扣1</p>
             </div>
             <div class="item">
               <img src="../assets/store/12.png" alt="" />
-              <p>item2</p>
+              <p>钥匙扣2</p>
             </div>
           </div>
         </div>
@@ -75,11 +75,11 @@
           <div class="items">
             <div class="item">
               <img src="../assets/store/9.png" alt="" />
-              <p>item1</p>
+              <p>火漆印章1</p>
             </div>
             <div class="item">
               <img src="../assets/store/10.png" alt="" />
-              <p>item2</p>
+              <p>火漆印章2</p>
             </div>
           </div>
         </div>
@@ -90,11 +90,11 @@
           <div class="items">
             <div class="item">
               <img src="../assets/store/13.png" alt="" />
-              <p>item1</p>
+              <p>贴纸1</p>
             </div>
             <div class="item">
               <img src="../assets/store/14.png" alt="" />
-              <p>item2</p>
+              <p>贴纸2</p>
             </div>
           </div>
         </div>
@@ -163,11 +163,11 @@ export default {
   mounted() {
     let bodyEl = document.querySelector(".app");
     this.hammerBody = new Hammer(bodyEl);
-    this.hammerBody.on("swipeleft", ev => {
+    this.hammerBody.on("swipeleft", (ev) => {
       this.toggleMenu();
       // console.log(ev);
     });
-    this.hammerBody.on("swiperight", ev => {
+    this.hammerBody.on("swiperight", (ev) => {
       this.toggleBackMenu();
       // console.log(ev);
     });
@@ -193,12 +193,12 @@ export default {
   .categroy {
     margin-bottom: 20px;
     display: flex;
-    
+
     .title {
       flex: 1;
       padding-left: 35px;
       writing-mode: vertical-lr;
-      color:#ac845d;
+      color: #ac845d;
       font-size: 0.5rem;
     }
     .items {
