@@ -101,7 +101,7 @@
       </div>
     </v-content>
     <div class="menu">
-      <mainmenu current="Store" />
+      <mainmenu current="AboutMe" />
     </div>
   </v-app>
 </template>

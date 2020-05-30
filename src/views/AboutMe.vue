@@ -7,11 +7,30 @@
       <div class="myprofile">
         <div class="avatar">
           <img src="../assets/aboutme/avatar.svg" alt="" />
+          <p>浅子</p>
+        </div>
+        <div class="detail">
+          <div class="item">
+            <img src="../assets/aboutme/make.svg" alt="" />
+            <p>我的创作</p>
+          </div>
+          <div class="item">
+            <img src="../assets/aboutme/draw.svg" alt="" />
+            <p>我的涂鸦</p>
+          </div>
+          <div class="item">
+            <img src="../assets/aboutme/re.svg" alt="" />
+            <p>我的推荐</p>
+          </div>
+          <div class="item">
+            <img src="../assets/aboutme/goods.svg" alt="" />
+            <p>我的单品</p>
+          </div>
         </div>
       </div>
     </v-content>
     <div class="menu">
-      <mainmenu current="Store" />
+      <mainmenu current="AboutMe" />
     </div>
   </v-app>
 </template>
@@ -71,7 +90,7 @@ export default {
     },
   },
   mounted() {
-    let bodyEl = document.querySelector(".app");
+    let bodyEl = document.querySelector("#inspire");
     this.hammerBody = new Hammer(bodyEl);
     this.hammerBody.on("swipeleft", ev => {
       this.toggleMenu();
@@ -121,13 +140,51 @@ export default {
 }
 
 .content {
-  overflow: hidden;
+  // overflow: scroll;
   .myprofile {
     .avatar {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
       img {
-        height:70px;
-        width:70px;
+        height: 70px;
+        width: 70px;
         margin: 0 auto;
+      }
+      p {
+        margin-top: 20px;
+        text-align: center;
+      }
+      border-top-right-radius: 20px;
+      border-top-left-radius: 20px;
+      border-bottom: 1.2px solid #ac845d;
+      background-color: rgb(221, 205, 169);
+    }
+    .detail {
+      background-color: #f5f4f1;
+
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      .item {
+        margin: 0 20px;
+        margin-top: 20px;
+        padding: 25px 20px;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        background-color: rgb(221, 218, 210);
+        p {
+          font-size: 1.1rem;
+          margin: 0;
+          letter-spacing: 0.3rem;
+          display: inline;
+          margin-left: 40px;
+        }
+        img {
+          margin-left: 20px;
+          height: 40px;
+        }
       }
     }
   }

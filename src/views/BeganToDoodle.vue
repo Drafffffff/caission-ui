@@ -48,6 +48,9 @@
           </div>
         </div>
       </div>
+            <div class="nextbutton" @click="save=true">
+        <p>保存</p>
+      </div>
     </div>
   </v-app>
 </template>
@@ -64,6 +67,7 @@ export default {
       processFlag: 1,
       curColor: 0,
     },
+    save:false,
     colors: ["#b46530", "#bc8a59", "#89b6ae", "#8ab1d7", "#95c7b6", "#e7be99", "#f3ede4"],
     color: "",
         bg: ["","bgout", "bgmid", "bgin"],
@@ -86,6 +90,11 @@ export default {
       if (this.flag.processFlag === 3) {
         this.drawInner(sketch);
       }
+      if(this.save){
+        sketch.saveCanvas('myCanvas','png');
+        sketch.print('a');
+        this.save = false;
+      }
     },
     changeFLag(n) {
       console.log(n)
@@ -100,6 +109,7 @@ export default {
       if(n==3){
          document.querySelector('.canvas > div').className = " bgin"
       }
+
     },
     changeColor(n){
       this.flag.curColor=n;
