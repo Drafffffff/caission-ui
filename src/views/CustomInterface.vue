@@ -207,8 +207,8 @@ export default {
   }
   .card {
     position: relative;
-    width: 90%;
-    margin: 5%;
+    width: 80%;
+    margin: 10%;
     z-index: 20;
     top: 6vh;
     border-radius: 20px;
@@ -216,11 +216,11 @@ export default {
 
     .card-img {
       // margin: 50px;
-      width: 100%;
-      height: 90vmin;
+      width: 300px;
+      height: 300px;
       overflow: hidden;
       img {
-        width: 100%;
+        width: 300px;
       }
     }
   }
@@ -243,7 +243,7 @@ export default {
     top: 0;
     z-index: 10;
     width: 100vw;
-    height: 63vh;
+    height: 66vh;
     border-radius: 0 0 20px 20px;
     background-color: rgb(221, 205, 169);
     box-shadow: 0px 5px 30px rgb(179, 179, 179);
@@ -252,7 +252,7 @@ export default {
       height: 80px;
       background-color: rgb(206, 206, 206);
       position: relative;
-      top: 63vh;
+      top: 66vh;
       margin: 0 auto;
       border-radius: 10px;
       transform: translateY(-40px) rotate(45deg);

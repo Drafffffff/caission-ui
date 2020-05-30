@@ -37,13 +37,13 @@
               </div>
             </div>
             <div class="selector2">
-              <div style="background-color:#b46530" @click="changeColor(0)" :class="flag.curColor==0?'active':''"></div>
-              <div style="background-color:#bc8a59" @click="changeColor(1)" :class="flag.curColor==1?'active':''"></div>
-              <div style="background-color:#89b6ae" @click="changeColor(2)" :class="flag.curColor==2?'active':''"></div>
-              <div style="background-color:#8ab1d7" @click="changeColor(3)" :class="flag.curColor==3?'active':''"></div>
-              <div style="background-color:#95c7b6" @click="changeColor(4)" :class="flag.curColor==4?'active':''"></div>
-              <div style="background-color:#e7be99" @click="changeColor(5)" :class="flag.curColor==5?'active':''"></div>
-              <div style="background-color:#f3ede4" @click="changeColor(6)" :class="flag.curColor==6?'active':''"></div>
+              <div style="background-color:#95C7B6" @click="changeColor(0)" :class="flag.curColor==0?'active':''"></div>
+              <div style="background-color:#F0D680" @click="changeColor(1)" :class="flag.curColor==1?'active':''"></div>
+              <div style="background-color:#E1B45E" @click="changeColor(2)" :class="flag.curColor==2?'active':''"></div>
+              <div style="background-color:#B46530" @click="changeColor(3)" :class="flag.curColor==3?'active':''"></div>
+              <div style="background-color:#A74923" @click="changeColor(4)" :class="flag.curColor==4?'active':''"></div>
+              <div style="background-color:#8AB1D7" @click="changeColor(5)" :class="flag.curColor==5?'active':''"></div>
+              <div style="background-color:#E7BE99" @click="changeColor(6)" :class="flag.curColor==6?'active':''"></div>
             </div>
           </div>
         </div>
@@ -68,7 +68,7 @@ export default {
       curColor: 0,
     },
     save:false,
-    colors: ["#b46530", "#bc8a59", "#89b6ae", "#8ab1d7", "#95c7b6", "#e7be99", "#f3ede4"],
+    colors: ["#95C7B6", "#F0D680", "#E1B45E", "#B46530", "#A74923", "#8AB1D7", "#E7BE99"],
     color: "",
         bg: ["","bgout", "bgmid", "bgin"],
   }),
