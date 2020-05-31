@@ -207,8 +207,8 @@ export default {
   }
   .card {
     position: relative;
-    width: 80%;
-    margin: 10%;
+    width: 300px;
+    margin: auto;
     z-index: 20;
     top: 6vh;
     border-radius: 20px;

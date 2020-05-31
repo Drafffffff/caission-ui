@@ -46,11 +46,11 @@
                 <img src="../assets/custom/color/3.svg" alt="" />
               </div>
 
-              <div :class="color == 3 ? 'active' : ''" @click="changeColor(4)">
+              <div :class="color == 4 ? 'active' : ''" @click="changeColor(4)">
                 <img src="../assets/custom/color/2.svg" alt="" />
               </div>
 
-              <div :class="color == 3 ? 'active' : ''" @click="changeColor(5)">
+              <div :class="color == 5 ? 'active' : ''" @click="changeColor(5)">
                 <img src="../assets/custom/color/1.svg" alt="" />
               </div>
             </div>
