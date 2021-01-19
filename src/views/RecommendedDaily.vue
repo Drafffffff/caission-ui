@@ -71,15 +71,15 @@ export default {
     items: [
       {
         src: "../assets/recommend/1.png",
-        title: "从【颜色】开始探索聚焦藻井千年盛彩",
+        title: "从【颜色】开始探索聚焦花砖千年盛彩",
       },
       {
         src: "../assets/recommend/2.png",
-        title: "从【朝代】开始探索十余个朝代的藻井艺术",
+        title: "从【朝代】开始探索十余个朝代的花砖艺术",
       },
       {
         src: "../assets/recommend/3.png",
-        title: "从【形式】开始探索走进藻井结构演变过程",
+        title: "从【形式】开始探索走进花砖结构演变过程",
       },
     ],
   }),

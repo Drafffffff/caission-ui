@@ -26,7 +26,7 @@
         </div>
       </v-card>
       <div class="card-title">
-        <p v-if="imgi == 0">藻井结构示意</p>
+        <p v-if="imgi == 0">花砖结构示意</p>
         <p v-if="imgi == 1">垂幔层</p>
         <p v-if="imgi == 2">边饰层</p>
         <p v-if="imgi == 3">井心层</p>

@@ -3,7 +3,7 @@
     <v-content class="content">
       <v-img class="building" src="http://placehold.it/400x400"> </v-img>
       <div class="title">
-        <p class="">印象藻井</p>
+        <p class="">闽南花砖</p>
       </div>
 
       <v-card class="card" max-width="400" elevation="20">
