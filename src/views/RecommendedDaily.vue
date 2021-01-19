@@ -71,11 +71,11 @@ export default {
     items: [
       {
         src: "../assets/recommend/1.png",
-        title: "从【颜色】开始探索聚焦花砖千年盛彩",
+        title: "从【颜色】开始探索聚焦花砖的盛彩",
       },
       {
         src: "../assets/recommend/2.png",
-        title: "从【朝代】开始探索十余个朝代的花砖艺术",
+        title: "从【历史】开始探索快速兴起的花砖艺术",
       },
       {
         src: "../assets/recommend/3.png",
